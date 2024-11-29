@@ -13,4 +13,9 @@
     <ProjectReference Include="..\HRMS.Entities\HRMS.Entities.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Forms\" />
+    <Folder Include="Tools\" />
+  </ItemGroup>
+
 </Project>
