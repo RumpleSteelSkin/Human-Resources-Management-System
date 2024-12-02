@@ -31,6 +31,7 @@
             button1 = new Button();
             button2 = new Button();
             label1 = new Label();
+            button3 = new Button();
             SuspendLayout();
             // 
             // button1
@@ -62,11 +63,22 @@
             label1.Text = "ASLIHAN";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // button3
+            // 
+            button3.Location = new Point(478, 301);
+            button3.Name = "button3";
+            button3.Size = new Size(225, 172);
+            button3.TabIndex = 3;
+            button3.Text = "METİNHAN";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 771);
+            Controls.Add(button3);
             Controls.Add(label1);
             Controls.Add(button2);
             Controls.Add(button1);
@@ -80,5 +92,6 @@
         private Button button1;
         private Button button2;
         private Label label1;
+        private Button button3;
     }
 }
