@@ -13,7 +13,7 @@ namespace HRMS.DataAccess.Context
         public DbSet<TrainingProgram> TrainingPrograms { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=HRMS;Integrated Security=True;Trust Server Certificate=True;User Id=Admin;Password=n^9Fu:,ek?$Wg01sU$I}6N9%)#JIQX8g");
+            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-LORIM7N\SQLEXPRESS; Initial Catalog=HRMS; Integrated Security=True;TrustServerCertificate=True");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
