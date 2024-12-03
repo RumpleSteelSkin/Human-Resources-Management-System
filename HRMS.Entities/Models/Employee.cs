@@ -11,6 +11,11 @@ namespace HRMS.Entities.Models
         public DateTime? TerminationDate { get; set; } = null;
         public decimal Salary { get; set; }
 
-
+        //Navigation properties
+        public Department? Department { get; set; } 
+        public Guid DepartmentID { get; set; }
+        public Position? Position { get; set; } 
+        public Guid PositionID { get; set; }
+        public Guid? Subordinate { get; set; }
     }
 }
