@@ -3,7 +3,7 @@ using HRMS.Entities.Models;
 
 namespace HRMS.DataAccess.Repositories
 {
-    public class EmployeeRepository(ADBContext context) : GenericRepository<Employee>(context)
+    public class TrainingProgramRepository(ADBContext context) : GenericRepository<TrainingProgram>(context)
     {
     }
 }
