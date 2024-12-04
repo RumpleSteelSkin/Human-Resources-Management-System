@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 
 namespace HRMS.Business.Services
 {
-    public class TrainingProgramsService(TrainingProgramRepository tpRepo) : IManager<TrainingProgram>
+    public class TrainingProgramService(TrainingProgramRepository tpRepo) : IManager<TrainingProgram>
     {
         private readonly TrainingProgramRepository _repository = tpRepo;
         public void Create(TrainingProgram entity)
