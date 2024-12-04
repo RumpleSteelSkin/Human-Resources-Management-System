@@ -12,8 +12,7 @@ namespace HRMS.Business.Services
         private readonly EmployeeRepository _repository=eRepo;
         public void Create(Employee entity)
         {
-
-            if (IfEntityExists(x => x.FullName == entity.FullName))
+            if (IfEntityExists(x => x.FullName == entity.FullName && x.DateOfBirth == entity.DateOfBirth))
                 throw new Exception($"{entity.FullName} ismindeki çalışan daha önce kayıt edilmiştir.");
             ValidationResult result = new EmployeeValidator().Validate(entity);
             if (!result.IsValid)

@@ -3,8 +3,6 @@ using HRMS.DataAccess.Context;
 using HRMS.Entities.Abstractions;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
-
-
 namespace HRMS.DataAccess.Repositories
 {
     public class GenericRepository<T>(ADBContext context) : IRepository<T> where T : BaseEntity
