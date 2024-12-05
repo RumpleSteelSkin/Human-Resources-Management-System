@@ -12,7 +12,8 @@ namespace HRMS.Business.Validators
                 .MinimumLength(3).WithMessage("Departman adı en az 3 karakter olmalıdır.");
 
             RuleFor(x => x.Location)
-                .NotNull().NotEmpty().WithMessage("Departman lokasyonu boş geçilemez.");
+                .NotNull().NotEmpty().WithMessage("Departman lokasyonu boş bırakılamaz.")
+                .MinimumLength(5).WithMessage("Departman lokasyonu en az 5 karakter olmalıdır.");
         }
     }
 }
