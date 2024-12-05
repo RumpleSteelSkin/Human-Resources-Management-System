@@ -1,5 +1,4 @@
 ﻿using HRMS.Entities.Abstractions;
-using System.Xml.Linq;
 namespace HRMS.Entities.Models
 {
     public class Employee : BaseEntity

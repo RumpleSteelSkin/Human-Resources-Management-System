@@ -3,7 +3,7 @@ using HRMS.Entities.Models;
 
 namespace HRMS.Business.Validators
 {
-    public class TrainingProgramValidator:AbstractValidator<TrainingProgram>
+    public class TrainingProgramValidator : AbstractValidator<TrainingProgram>
     {
         public TrainingProgramValidator()
         {

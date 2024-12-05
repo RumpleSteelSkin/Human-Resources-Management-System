@@ -3,7 +3,7 @@ using HRMS.Entities.Models;
 
 namespace HRMS.DataAccess.Repositories
 {
-    public class LeaveRequestRepository(ADBContext context) : GenericRepository<LeaveRequest>(context)
+    public class PerformanceReviewRepository(ADBContext context) : GenericRepository<PerformanceReview>(context)
     {
     }
 }
