@@ -20,9 +20,6 @@ namespace HRMS.Business.Validators
             RuleFor(x => x.HireDate)
                 .NotNull().NotEmpty().WithMessage("Çalışanın işe giriş tarihi girilmesi gerekmektedir.");
 
-            RuleFor(x => x.TerminationDate)
-                .NotNull().NotEmpty().WithMessage("Çalışanın işten ayrılış tarihi girilmesi gerekmektedir.");
-
             RuleFor(x => x.Salary)
                 .NotNull().NotEmpty().WithMessage("Çalışanın maaşı belirlenmelidir boş geçilemez.");
         }

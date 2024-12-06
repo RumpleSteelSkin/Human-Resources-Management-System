@@ -22,6 +22,9 @@ namespace HRMS.UI
                 new("EÐÝTÝM PROGRAMI ÝÞLEMLERÝ",null,new EventHandler(TrainingProgram_Click!))
             ];
             masterMenu.DropDownItems.AddRange(childs);
+            ToolStripMenuItem reportsMenu = new("DÝÐER");
+            ToolStripMenuItem testMenu = new("RAPORLAR", null, new EventHandler(Reports_Click!)); 
+            reportsMenu.DropDownItems.Add(testMenu);
             MenuStrip ms = new()
             {
                 MdiWindowListItem = masterMenu,
@@ -29,6 +32,7 @@ namespace HRMS.UI
                 Font = new Font("Segoe UI Black", 15f, FontStyle.Bold)
             };
             ms.Items.Add(masterMenu);
+            ms.Items.Add(reportsMenu);
             this.MainMenuStrip = ms;
             this.Controls.Add(ms);
         }
@@ -38,5 +42,6 @@ namespace HRMS.UI
         private void PerformanceReview_Click(object sender, EventArgs e) { FP.FormControlAndOpenInMdi(this, new PerformanceReviewForm()); }
         private void Position_Click(object sender, EventArgs e) { FP.FormControlAndOpenInMdi(this, new PositionForm()); }
         private void TrainingProgram_Click(object sender, EventArgs e) { FP.FormControlAndOpenInMdi(this, new TrainingProgramForm()); }
+        private void Reports_Click(object sender, EventArgs e) { FP.FormControlAndOpenInMdi(this, new ReportsForm()); }
     }
 }
