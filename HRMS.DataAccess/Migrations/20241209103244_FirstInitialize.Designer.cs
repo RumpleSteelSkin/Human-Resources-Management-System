@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HRMS.DataAccess.Migrations
 {
     [DbContext(typeof(ADBContext))]
-    [Migration("20241203141724_FirstInitialize")]
+    [Migration("20241209103244_FirstInitialize")]
     partial class FirstInitialize
     {
         /// <inheritdoc />
@@ -90,16 +90,11 @@ namespace HRMS.DataAccess.Migrations
                     b.Property<DateTime?>("TerminationDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("TrainingProgramID")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("ID");
 
                     b.HasIndex("DepartmentID");
 
                     b.HasIndex("PositionID");
-
-                    b.HasIndex("TrainingProgramID");
 
                     b.ToTable("Employees");
                 });
@@ -231,6 +226,21 @@ namespace HRMS.DataAccess.Migrations
                     b.ToTable("TrainingPrograms");
                 });
 
+            modelBuilder.Entity("HRMS.Entities.Models.TrainingProgramEmployee", b =>
+                {
+                    b.Property<Guid>("TrainingProgramID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("EmployeeID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("TrainingProgramID", "EmployeeID");
+
+                    b.HasIndex("EmployeeID");
+
+                    b.ToTable("TrainingProgramEmployee");
+                });
+
             modelBuilder.Entity("HRMS.Entities.Models.Employee", b =>
                 {
                     b.HasOne("HRMS.Entities.Models.Department", "Department")
@@ -244,10 +254,6 @@ namespace HRMS.DataAccess.Migrations
                         .HasForeignKey("PositionID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("HRMS.Entities.Models.TrainingProgram", null)
-                        .WithMany("Employees")
-                        .HasForeignKey("TrainingProgramID");
 
                     b.Navigation("Department");
 
@@ -295,9 +301,33 @@ namespace HRMS.DataAccess.Migrations
                     b.Navigation("Trainer");
                 });
 
+            modelBuilder.Entity("HRMS.Entities.Models.TrainingProgramEmployee", b =>
+                {
+                    b.HasOne("HRMS.Entities.Models.Employee", "Employee")
+                        .WithMany("TrainingProgramEmployees")
+                        .HasForeignKey("EmployeeID")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("HRMS.Entities.Models.TrainingProgram", "TrainingProgram")
+                        .WithMany("TrainingProgramEmployees")
+                        .HasForeignKey("TrainingProgramID")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
+
+                    b.Navigation("TrainingProgram");
+                });
+
             modelBuilder.Entity("HRMS.Entities.Models.Department", b =>
                 {
                     b.Navigation("Employees");
+                });
+
+            modelBuilder.Entity("HRMS.Entities.Models.Employee", b =>
+                {
+                    b.Navigation("TrainingProgramEmployees");
                 });
 
             modelBuilder.Entity("HRMS.Entities.Models.Position", b =>
@@ -307,7 +337,7 @@ namespace HRMS.DataAccess.Migrations
 
             modelBuilder.Entity("HRMS.Entities.Models.TrainingProgram", b =>
                 {
-                    b.Navigation("Employees");
+                    b.Navigation("TrainingProgramEmployees");
                 });
 #pragma warning restore 612, 618
         }

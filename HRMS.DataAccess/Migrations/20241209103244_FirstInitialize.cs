@@ -56,7 +56,6 @@ namespace HRMS.DataAccess.Migrations
                     DepartmentID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     PositionID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Subordinate = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    TrainingProgramID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -155,6 +154,28 @@ namespace HRMS.DataAccess.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "TrainingProgramEmployee",
+                columns: table => new
+                {
+                    TrainingProgramID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    EmployeeID = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TrainingProgramEmployee", x => new { x.TrainingProgramID, x.EmployeeID });
+                    table.ForeignKey(
+                        name: "FK_TrainingProgramEmployee_Employees_EmployeeID",
+                        column: x => x.EmployeeID,
+                        principalTable: "Employees",
+                        principalColumn: "ID");
+                    table.ForeignKey(
+                        name: "FK_TrainingProgramEmployee_TrainingPrograms_TrainingProgramID",
+                        column: x => x.TrainingProgramID,
+                        principalTable: "TrainingPrograms",
+                        principalColumn: "ID");
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Employees_DepartmentID",
                 table: "Employees",
@@ -164,11 +185,6 @@ namespace HRMS.DataAccess.Migrations
                 name: "IX_Employees_PositionID",
                 table: "Employees",
                 column: "PositionID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Employees_TrainingProgramID",
-                table: "Employees",
-                column: "TrainingProgramID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_LeaveRequests_EmployeeID",
@@ -186,33 +202,19 @@ namespace HRMS.DataAccess.Migrations
                 column: "ReviewID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_TrainingProgramEmployee_EmployeeID",
+                table: "TrainingProgramEmployee",
+                column: "EmployeeID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_TrainingPrograms_TrainerID",
                 table: "TrainingPrograms",
                 column: "TrainerID");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Employees_TrainingPrograms_TrainingProgramID",
-                table: "Employees",
-                column: "TrainingProgramID",
-                principalTable: "TrainingPrograms",
-                principalColumn: "ID");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Employees_Departments_DepartmentID",
-                table: "Employees");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Employees_Positions_PositionID",
-                table: "Employees");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Employees_TrainingPrograms_TrainingProgramID",
-                table: "Employees");
-
             migrationBuilder.DropTable(
                 name: "LeaveRequests");
 
@@ -220,16 +222,19 @@ namespace HRMS.DataAccess.Migrations
                 name: "PerformanceReviews");
 
             migrationBuilder.DropTable(
-                name: "Departments");
-
-            migrationBuilder.DropTable(
-                name: "Positions");
+                name: "TrainingProgramEmployee");
 
             migrationBuilder.DropTable(
                 name: "TrainingPrograms");
 
             migrationBuilder.DropTable(
                 name: "Employees");
+
+            migrationBuilder.DropTable(
+                name: "Departments");
+
+            migrationBuilder.DropTable(
+                name: "Positions");
         }
     }
 }

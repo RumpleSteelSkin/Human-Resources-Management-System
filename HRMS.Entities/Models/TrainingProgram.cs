@@ -11,6 +11,6 @@ namespace HRMS.Entities.Models
         //Navigation properties
         public Employee? Trainer { get; set; }
         public Guid TrainerID { get; set; }
-        public ICollection<Employee>? Employees { get; set; } 
+        public ICollection<TrainingProgramEmployee>? TrainingProgramEmployees { get; set; }
     }
 }

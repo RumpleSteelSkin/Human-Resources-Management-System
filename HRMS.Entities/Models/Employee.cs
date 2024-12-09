@@ -18,5 +18,6 @@ namespace HRMS.Entities.Models
         public Position? Position { get; set; } 
         public Guid PositionID { get; set; }
         public Guid? Subordinate { get; set; }
+        public ICollection<TrainingProgramEmployee>? TrainingProgramEmployees { get; set; }
     }
 }
