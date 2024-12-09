@@ -5,5 +5,6 @@ namespace HRMS.DataAccess.Repositories
 {
     public class PerformanceReviewRepository(ADBContext context) : GenericRepository<PerformanceReview>(context)
     {
+     
     }
 }
