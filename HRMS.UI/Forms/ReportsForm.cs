@@ -181,6 +181,39 @@ namespace HRMS.UI.Forms
             {
                 FP.LeaveRequestService?.Create(item);
             }
+
+
+            //▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓Eğitim programı ekleme işlemi 5 Adet
+            List<TrainingProgram> trainingPrograms = [];
+            for (int i = 1; i < 6; i++)//5 Adet eğitim için döngü
+            {
+                List<TrainingProgramEmployee> trainingProgramEmployees = [];//Ara tablo için liste
+                TrainingProgram tp = new()
+                {
+                    Name = $"Eğitim {i}",//Rastgele eğitim ismi atama
+                    Description = "Eğitim Yapılcak",
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now,
+                    TrainerID = employees[rnd.Next(0, employees.Count)].ID,//Rastgele eğitim veren çalışan
+                };
+
+                for (int j = (i*10)-10; j < i*10; j++)//Her eğitimde 10 adet eğitim alan çalışan girdisi için döngü
+                {
+                    TrainingProgramEmployee tpe = new()
+                    {
+                        TrainingProgramID = tp.ID,//*Yeni açılan eğitim programının IDsi
+                        EmployeeID = employees[j].ID//*Eğitim programına eklenecek eğitimi alan çalışan IDsi
+                    };
+                    trainingProgramEmployees.Add(tpe);//Ara tabloya listesine ekle.
+                }
+                tp.TrainingProgramEmployees = trainingProgramEmployees;//Eklenen ara tabloyu eğitim programına tanımla.
+                trainingPrograms.Add(tp);//Oluşturulan eğitim programını listeye ekle
+            }
+            foreach (TrainingProgram item in trainingPrograms)//Herşeyin sonunda eğitim programı Listesini döndür
+            {
+                FP.TrainingProgramService?.Create(item);//Dönen her eğitim programını sql'e gönder
+                //EF Core otomatik olarak ara tabloyu dolduracaktır.
+            }
         }
     }
 }
