@@ -1,5 +1,6 @@
 ﻿using HRMS.Entities.Models;
 using HRMS.UI.Tools;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace HRMS.UI.Forms
 {
@@ -197,7 +198,7 @@ namespace HRMS.UI.Forms
                     TrainerID = employees[rnd.Next(0, employees.Count)].ID,//Rastgele eğitim veren çalışan
                 };
 
-                for (int j = (i*10)-10; j < i*10; j++)//Her eğitimde 10 adet eğitim alan çalışan girdisi için döngü
+                for (int j = (i * 10) - 10; j < i * 10; j++)//Her eğitimde 10 adet eğitim alan çalışan girdisi için döngü
                 {
                     TrainingProgramEmployee tpe = new()
                     {
@@ -214,6 +215,111 @@ namespace HRMS.UI.Forms
                 FP.TrainingProgramService?.Create(item);//Dönen her eğitim programını sql'e gönder
                 //EF Core otomatik olarak ara tabloyu dolduracaktır.
             }
+        }
+
+        private void GeneralConditionInfos()
+        {
+            var sumEmployees = FP.EmployeeService?.GetAll()?.Count();
+            var sumSalary = FP.EmployeeService?.GetAll()?.Sum(x => x.Salary);
+            lblGeneralCondition.Text = 
+                $"ÇALIŞAN SAYISI\n{sumEmployees}\n" +
+                $"ORTALAMA MAAŞ\n{sumSalary/sumEmployees} TL\n" +
+                $"TOPLAM MAAŞ\n{sumSalary} TL";
+        }
+
+        private void GenderGraph()
+        {
+            Chart chart = new()
+            {
+                Dock = DockStyle.Fill
+            };
+            lblGenderGraph.Controls.Add(chart);
+
+            ChartArea chartArea = new("MainArea");
+            chart.ChartAreas.Add(chartArea);
+
+            Series series = new("GenderGraph")
+            {
+                IsVisibleInLegend = true,
+                ChartType = SeriesChartType.Pie
+            };
+            chart.Series.Add(series);
+
+            var genderCounts = FP.EmployeeService?.GetAll()
+                ?.GroupBy(x => x.Gender)
+                ?.Select(g => new { Gender = g.Key, Count = g.Count() })
+                ?.ToList();
+
+            if (genderCounts != null)
+            {
+                foreach (var genderCount in genderCounts)
+                {
+                    series.Points.Add(new DataPoint(0, genderCount.Count)
+                    {
+                        LegendText = genderCount.Gender,
+                        Label = $"{genderCount.Gender}: {genderCount.Count}"
+                    });
+                }
+            }
+
+            chart.Titles.Add("Cinsiyet Grafiği");
+        }
+
+        private void EmployeesInDepartmentGraph()
+        {
+            Chart chart = new()
+            {
+                Dock = DockStyle.Fill
+            };
+            lblEmployeesInDepartments.Controls.Add(chart);
+
+            ChartArea chartArea = new("MainArea");
+            chart.ChartAreas.Add(chartArea);
+
+            Series series = new("EmployeesInDepartmentGraph")
+            {
+                IsXValueIndexed = true,
+                IsVisibleInLegend = true,
+                ChartType = SeriesChartType.Bar
+            };
+            chart.Series.Add(series);
+
+            var employees = FP.EmployeeService?.GetAll();
+            var departments = FP.DepartmentService?.GetAll();
+            if (departments != null)
+            {
+                var employeesInDepartmentData = employees
+                ?.Join(departments,
+                       ex => ex.DepartmentID,
+                       d => d.ID,
+                       (ex, d) => new { ex, d.Name })
+                .GroupBy(x => x.Name)
+                .Select(g => new { DepartmentName = g.Key, Count = g.Count() })
+                .ToList();
+                if (employeesInDepartmentData != null)
+                {
+                    byte i = 0;
+                    foreach (var employeesInDepartment in employeesInDepartmentData)
+                    {
+                        series.Points.Add(new DataPoint(i, employeesInDepartment.Count)
+                        {
+                            LegendText = employeesInDepartment.DepartmentName,
+                            Label = $"{employeesInDepartment.DepartmentName}: {employeesInDepartment.Count}"
+                        });
+                        i += 1;
+                    }
+                }
+            }
+            chart.ChartAreas[0].AxisX.LabelStyle.Enabled = false; // X ekseni etiketlerini gizler
+
+            chart.Titles.Add("Departman İçerisinde Çalışanlar Grafiği");
+        }
+
+        private void BtnUpdateCharts_Click(object sender, EventArgs e)
+        {
+            GenderGraph();
+            EmployeesInDepartmentGraph();
+            GeneralConditionInfos();
         }
     }
 }
