@@ -7,6 +7,27 @@ namespace HRMS.UI.Tools
     public static class FP
     {
         /// <summary>
+        /// Belirtilen ListBox'un veri kaynağını (DataSource) günceller ve istenilen özelliklere göre yapılandırır.
+        /// Seçilen değeri sıfırlar (SelectedIndex = -1) ve istenirse, SelectedIndexChanged olayını geçici olarak devre dışı bırakıp yeniden ekler.
+        /// </summary>
+        /// <param name="listBox">Veri kaynağı güncellenecek olan ListBox kontrolü.</param>
+        /// <param name="valueMember">ListBox'un ValueMember özelliği olarak ayarlanacak özellik adı.</param>
+        /// <param name="displayMember">ListBox'un DisplayMember özelliği olarak ayarlanacak özellik adı.</param>
+        /// <param name="dataSource">ListBox için kullanılacak yeni veri kaynağı.</param>
+        /// <param name="selectedIndexChangedHandler">Eğer tanımlı ise, SelectedIndexChanged olayını geçici olarak devre dışı bırakıp yeniden eklemek için kullanılacak olay işleyicisi.</param>
+        public static void UpdateListBox(ListBox listBox, string valueMember, string displayMember, object dataSource, EventHandler? selectedIndexChangedHandler = null)
+        {
+            if (selectedIndexChangedHandler != null)
+                listBox.SelectedIndexChanged -= selectedIndexChangedHandler;
+            listBox.DataSource = null;
+            listBox.ValueMember = valueMember;
+            listBox.DisplayMember = displayMember;
+            listBox.DataSource = dataSource;
+            listBox.SelectedIndex = -1;
+            if (selectedIndexChangedHandler != null)
+                listBox.SelectedIndexChanged += selectedIndexChangedHandler;
+        }
+        /// <summary>
         ///  Formun açık olup olmadığını kontrol ederek belirtilen fMdiParent formun içine fMdiChild açmasını sağlar
         /// </summary>
         public static void FormControlAndOpenInMdi(Form fMdiParent, Form fMdiChild)

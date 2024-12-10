@@ -12,5 +12,10 @@ namespace HRMS.Entities.Models
         //Navigation properties
         public Employee? Employee { get; set; }
         public Guid EmployeeID { get; set; }
+
+        public override string ToString()
+        {
+            return ID + " " + LeaveType + " " + LeaveStatus;
+        }
     }
 }

@@ -19,5 +19,10 @@ namespace HRMS.Entities.Models
         public Guid PositionID { get; set; }
         public Guid? Subordinate { get; set; }
         public ICollection<TrainingProgramEmployee>? TrainingProgramEmployees { get; set; }
+
+        public override string ToString()
+        {
+            return FirstName + " " +LastName;
+        }
     }
 }
