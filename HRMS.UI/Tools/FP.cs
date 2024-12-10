@@ -28,7 +28,7 @@ namespace HRMS.UI.Tools
         private static ADBContext? _aDBContext;
         private static EmployeeService? _employeeService;
         private static LeaveRequestService? _leaveRequestService;
-        //private static PerformanceReviewService? _performanceReviewService;
+        private static PerformanceReviewService? _performanceReviewService;
         private static PositionService? _positionService;
         private static TrainingProgramService? _trainingProgramService;
 
@@ -36,7 +36,7 @@ namespace HRMS.UI.Tools
         public static ADBContext? ADBContext { get => _aDBContext; }
         public static EmployeeService? EmployeeService { get => _employeeService; }
         public static LeaveRequestService? LeaveRequestService { get => _leaveRequestService; }
-        //public static PerformanceReviewService? PerformanceReviewService { get => _performanceReviewService; }
+        public static PerformanceReviewService? PerformanceReviewService { get => _performanceReviewService; }
         public static PositionService? PositionService { get => _positionService; }
         public static TrainingProgramService? TrainingProgramService { get => _trainingProgramService; }
         /// <summary>
@@ -49,7 +49,7 @@ namespace HRMS.UI.Tools
             _departmentService = new(new DepartmentRepository(_aDBContext));
             _employeeService = new(new EmployeeRepository(_aDBContext));
             _leaveRequestService = new(new LeaveRequestRepository(_aDBContext));
-            //_performanceReviewService = new(new PerformanceReviewRepository(_aDBContext));
+            _performanceReviewService = new(new PerformanceReviewRepository(_aDBContext));
             _positionService = new(new PositionRepository(_aDBContext));
             _trainingProgramService = new(new TrainingProgramRepository(_aDBContext));
         }
