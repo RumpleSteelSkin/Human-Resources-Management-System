@@ -44,18 +44,18 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            label1.Location = new Point(12, 19);
+            label1.Location = new Point(10, 14);
             label1.Name = "label1";
-            label1.Size = new Size(399, 41);
+            label1.Size = new Size(325, 32);
             label1.TabIndex = 0;
             label1.Text = "Performans Değerlendirme";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(12, 71);
+            label2.Location = new Point(10, 53);
             label2.Name = "label2";
-            label2.Size = new Size(651, 20);
+            label2.Size = new Size(542, 15);
             label2.TabIndex = 1;
             label2.Text = "-----------------------------------------------------------------------------------------------------------\r\n";
             // 
@@ -63,80 +63,84 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label3.Location = new Point(12, 107);
+            label3.Location = new Point(10, 80);
             label3.Name = "label3";
-            label3.Size = new Size(104, 28);
+            label3.Size = new Size(85, 21);
             label3.TabIndex = 3;
             label3.Text = "Çalışanlar";
             // 
             // puantxt
             // 
             puantxt.Font = new Font("Segoe UI", 18F);
-            puantxt.Location = new Point(433, 138);
+            puantxt.Location = new Point(379, 104);
+            puantxt.Margin = new Padding(3, 2, 3, 2);
             puantxt.Multiline = true;
             puantxt.Name = "puantxt";
             puantxt.PlaceholderText = "0";
-            puantxt.Size = new Size(226, 49);
+            puantxt.Size = new Size(198, 38);
             puantxt.TabIndex = 4;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label4.Location = new Point(433, 107);
+            label4.Location = new Point(379, 80);
             label4.Name = "label4";
-            label4.Size = new Size(59, 28);
+            label4.Size = new Size(49, 21);
             label4.TabIndex = 5;
             label4.Text = "Puan";
             // 
             // yorumtxt
             // 
             yorumtxt.Font = new Font("Segoe UI", 12F);
-            yorumtxt.Location = new Point(12, 515);
+            yorumtxt.Location = new Point(10, 386);
+            yorumtxt.Margin = new Padding(3, 2, 3, 2);
             yorumtxt.Multiline = true;
             yorumtxt.Name = "yorumtxt";
             yorumtxt.PlaceholderText = "Yorum ekleyiniz";
-            yorumtxt.Size = new Size(647, 245);
+            yorumtxt.Size = new Size(567, 185);
             yorumtxt.TabIndex = 6;
             // 
             // label5
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label5.Location = new Point(12, 484);
+            label5.Location = new Point(10, 363);
             label5.Name = "label5";
-            label5.Size = new Size(72, 28);
+            label5.Size = new Size(60, 21);
             label5.TabIndex = 7;
             label5.Text = "Yorum";
             // 
             // aramaTxt
             // 
             aramaTxt.Font = new Font("Segoe UI", 18F);
-            aramaTxt.Location = new Point(12, 138);
+            aramaTxt.Location = new Point(10, 104);
+            aramaTxt.Margin = new Padding(3, 2, 3, 2);
             aramaTxt.Multiline = true;
             aramaTxt.Name = "aramaTxt";
             aramaTxt.PlaceholderText = "Çalışan ara";
-            aramaTxt.Size = new Size(399, 49);
+            aramaTxt.Size = new Size(350, 38);
             aramaTxt.TabIndex = 8;
-            aramaTxt.TextChanged += textBox1_TextChanged;
             // 
             // calisanliste
             // 
             calisanliste.Font = new Font("Segoe UI", 12F);
-            calisanliste.Location = new Point(12, 193);
+            calisanliste.Location = new Point(10, 145);
+            calisanliste.Margin = new Padding(3, 2, 3, 2);
             calisanliste.Multiline = true;
             calisanliste.Name = "calisanliste";
             calisanliste.PlaceholderText = "Çalışan listesi";
-            calisanliste.Size = new Size(399, 288);
+            calisanliste.Size = new Size(350, 217);
             calisanliste.TabIndex = 9;
             // 
             // button1
             // 
             button1.BackColor = Color.FromArgb(128, 255, 128);
             button1.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            button1.Location = new Point(186, 781);
+            button1.Location = new Point(163, 586);
+            button1.Margin = new Padding(3, 2, 3, 2);
             button1.Name = "button1";
-            button1.Size = new Size(214, 71);
+            button1.Size = new Size(187, 53);
             button1.TabIndex = 10;
             button1.Text = "Ekle";
             button1.UseVisualStyleBackColor = false;
@@ -144,9 +148,9 @@
             // 
             // PerformanceReviewForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(671, 864);
+            ClientSize = new Size(587, 648);
             Controls.Add(button1);
             Controls.Add(calisanliste);
             Controls.Add(aramaTxt);
@@ -157,6 +161,7 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "PerformanceReviewForm";
             Text = "PerformanceReviewForm";
             Load += PerformanceReviewForm_Load;

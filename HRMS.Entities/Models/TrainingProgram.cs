@@ -12,5 +12,10 @@ namespace HRMS.Entities.Models
         public Employee? Trainer { get; set; }
         public Guid TrainerID { get; set; }
         public ICollection<TrainingProgramEmployee>? TrainingProgramEmployees { get; set; }
+
+        public override string ToString()
+        {
+            return Name + " - " + Trainer?.FullName;
+        }
     }
 }

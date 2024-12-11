@@ -22,9 +22,9 @@ namespace HRMS.Business.Services
 
         public void Delete(Guid id)
         {
-            var cat = _repository.GetById(id);
-            if (cat != null && cat.IsActive)
-                throw new Exception("Aktif olan bir eğitim programı silinemez.");
+            //var cat = _repository.GetById(id);
+            //if (cat != null && cat.IsActive)
+            //    throw new Exception("Aktif olan bir eğitim programı silinemez.");
             _repository.DeleteById(id);
         }
 
