@@ -199,6 +199,7 @@
             calisanlst.Name = "calisanlst";
             calisanlst.Size = new Size(338, 304);
             calisanlst.TabIndex = 31;
+            calisanlst.SelectedIndexChanged += calisanlst_SelectedIndexChanged;
             // 
             // onayCombo
             // 

@@ -49,12 +49,11 @@ namespace HRMS.Business.Services
             var existingLeaveRequest = _repository.GetById(entity.ID);
             if (existingLeaveRequest != null)
             {
-                // Güncellenmesi gereken izin talebi var
                 existingLeaveRequest.StartDate = entity.StartDate;
                 existingLeaveRequest.EndDate = entity.EndDate;
                 existingLeaveRequest.LeaveType = entity.LeaveType;
                 existingLeaveRequest.LeaveStatus = entity.LeaveStatus;
-                _repository.Update(existingLeaveRequest); // Repository'nin update metoduyla güncelle
+                _repository.Update(existingLeaveRequest); 
             }
             else
             {

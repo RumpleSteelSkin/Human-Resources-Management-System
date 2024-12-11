@@ -128,5 +128,10 @@ namespace HRMS.UI.Forms
         {
             FP.UpdateListBox(izinLst, "ID", null, FP.LeaveRequestService?.GetAll());
         }
+
+        private void calisanlst_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
