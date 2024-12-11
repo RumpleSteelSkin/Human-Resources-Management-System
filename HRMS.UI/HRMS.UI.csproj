@@ -24,4 +24,17 @@
     <PackageReference Include="WinForms.DataVisualization" Version="1.9.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Images\bmp\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Images\bmp\Delete.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\bmp\Update.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

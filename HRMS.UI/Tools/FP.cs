@@ -27,6 +27,15 @@ namespace HRMS.UI.Tools
             if (selectedIndexChangedHandler != null)
                 listBox.SelectedIndexChanged += selectedIndexChangedHandler;
         }
+        public static void UpdateComboBox(ComboBox comboBox, string valueMember, string displayMember, object dataSource)
+        {
+            comboBox.DataSource = null;
+            comboBox.ValueMember = valueMember;
+            comboBox.DisplayMember = displayMember;
+            comboBox.DataSource = dataSource;
+            comboBox.SelectedIndex = -1;
+        }
+
         /// <summary>
         ///  Formun açık olup olmadığını kontrol ederek belirtilen fMdiParent formun içine fMdiChild açmasını sağlar
         /// </summary>
@@ -45,6 +54,33 @@ namespace HRMS.UI.Tools
                 fMdiChild.Show();
         }
 
+        /// <summary>
+        ///  Form içerisinde bulunan tüm elementler arasında textbox ve maskedtexboxların içini temizler.
+        /// </summary>
+        public static void FormClear(Control control)
+        {
+            foreach (Control item in control.Controls)
+            {
+                if (item.TabIndex == 1)
+                    item.Focus();
+                if (item is TextBox box)
+                    box.Clear();
+                else if (item is MaskedTextBox mbox)
+                    mbox.Clear();
+                else if (item is CheckBox cbox)
+                    cbox.Checked = false;
+                else if (item.Controls.Count > 0)
+                    FormClear(item);
+            }
+        }
+        /// <summary>
+        ///  Basit hata ekranı gösterici.
+        /// </summary>
+        public static void ShowError(Exception ex)
+        {
+            MessageBox.Show($"{ex.Message}\n{ex.InnerException}", "Hata!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
         private static DepartmentService? _departmentService;
         private static ADBContext? _aDBContext;
         private static EmployeeService? _employeeService;
@@ -52,7 +88,6 @@ namespace HRMS.UI.Tools
         private static PerformanceReviewService? _performanceReviewService;
         private static PositionService? _positionService;
         private static TrainingProgramService? _trainingProgramService;
-
         public static DepartmentService? DepartmentService { get => _departmentService; }
         public static ADBContext? ADBContext { get => _aDBContext; }
         public static EmployeeService? EmployeeService { get => _employeeService; }
