@@ -46,7 +46,6 @@ namespace HRMS.UI.Forms
             try
             {
                 FP.UpdateListBox(lstDepartmentList, "ID", "Name", FP.DepartmentService?.GetAll()!, LstDepartmentList_SelectedIndexChanged!);
-                AddContexMenuStrip();
             }
             catch (Exception ex)
             {
@@ -123,6 +122,7 @@ namespace HRMS.UI.Forms
         }
         private void DepartmentForm_Load(object sender, EventArgs e)
         {
+            AddContexMenuStrip();
             GetAllDepartmanToList();
         }
         private void TxtSearch_TextChanged(object sender, EventArgs e)

@@ -28,300 +28,320 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            label2 = new Label();
-            izinCombo = new ComboBox();
-            label9 = new Label();
-            yorumtxt = new TextBox();
-            yorumlbl = new Label();
-            label13 = new Label();
-            label12 = new Label();
-            endDatePicker = new DateTimePicker();
-            startDatePicker = new DateTimePicker();
-            button1 = new Button();
-            label3 = new Label();
-            aramaTxt = new TextBox();
-            calisanlst = new ListBox();
-            onayCombo = new ComboBox();
-            label4 = new Label();
-            izinLst = new ListBox();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
+            lblLeaveRequestForm = new Label();
+            lblQuotes = new Label();
+            cmbLeaveType = new ComboBox();
+            lblLeaveType = new Label();
+            txtOther = new TextBox();
+            lblOther = new Label();
+            lblEndDate = new Label();
+            lblStartDate = new Label();
+            dtEndDate = new DateTimePicker();
+            dtStartDate = new DateTimePicker();
+            btnSaveLeaveRequest = new Button();
+            txtSearch = new TextBox();
+            lstEmployees = new ListBox();
+            cmbLeaveStatus = new ComboBox();
+            lblLeaveStatus = new Label();
+            lstLeaveRequest = new ListBox();
+            btnUpdateLeaveRequest = new Button();
+            btnDeleteLeaveRequest = new Button();
+            pBottomTab = new Panel();
+            txtSearchLeaveRequest = new TextBox();
+            pBottomTab.SuspendLayout();
             SuspendLayout();
             // 
-            // label1
+            // lblLeaveRequestForm
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            label1.Location = new Point(12, 9);
-            label1.Name = "label1";
-            label1.Size = new Size(244, 41);
-            label1.TabIndex = 0;
-            label1.Text = "İzin talep formu";
+            lblLeaveRequestForm.AutoSize = true;
+            lblLeaveRequestForm.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            lblLeaveRequestForm.Location = new Point(10, 7);
+            lblLeaveRequestForm.Name = "lblLeaveRequestForm";
+            lblLeaveRequestForm.Size = new Size(198, 32);
+            lblLeaveRequestForm.TabIndex = 0;
+            lblLeaveRequestForm.Text = "İzin talep formu";
             // 
-            // label2
+            // lblQuotes
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            label2.Location = new Point(5, 50);
-            label2.Name = "label2";
-            label2.Size = new Size(774, 41);
-            label2.TabIndex = 1;
-            label2.Text = "---------------------------------------------------------------\r\n";
+            lblQuotes.AutoSize = true;
+            lblQuotes.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            lblQuotes.Location = new Point(4, 38);
+            lblQuotes.Name = "lblQuotes";
+            lblQuotes.Size = new Size(644, 32);
+            lblQuotes.TabIndex = 1;
+            lblQuotes.Text = "---------------------------------------------------------------\r\n";
             // 
-            // izinCombo
+            // cmbLeaveType
             // 
-            izinCombo.Font = new Font("Segoe UI", 18F);
-            izinCombo.FormattingEnabled = true;
-            izinCombo.ItemHeight = 41;
-            izinCombo.Items.AddRange(new object[] { "Yıllık izin", "Doğum izni", "Süt izni", "Babalık izni", "Hastalık izni", "Ölüm izni", "Yeni iş arama izni", "Diğer" });
-            izinCombo.Location = new Point(14, 570);
-            izinCombo.Name = "izinCombo";
-            izinCombo.Size = new Size(338, 49);
-            izinCombo.TabIndex = 13;
-            izinCombo.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            cmbLeaveType.Font = new Font("Segoe UI", 18F);
+            cmbLeaveType.FormattingEnabled = true;
+            cmbLeaveType.ItemHeight = 32;
+            cmbLeaveType.Items.AddRange(new object[] { "Yıllık izin", "Doğum izni", "Süt izni", "Babalık izni", "Hastalık izni", "Ölüm izni", "Yeni iş arama izni", "Diğer" });
+            cmbLeaveType.Location = new Point(10, 368);
+            cmbLeaveType.Margin = new Padding(3, 2, 3, 2);
+            cmbLeaveType.Name = "cmbLeaveType";
+            cmbLeaveType.Size = new Size(296, 40);
+            cmbLeaveType.TabIndex = 13;
+            cmbLeaveType.SelectedIndexChanged += CmbLeaveType_SelectedIndexChanged;
             // 
-            // label9
+            // lblLeaveType
             // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label9.Location = new Point(14, 539);
-            label9.Name = "label9";
-            label9.Size = new Size(113, 28);
-            label9.TabIndex = 14;
-            label9.Text = "İzin sebebi";
+            lblLeaveType.AutoSize = true;
+            lblLeaveType.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblLeaveType.Location = new Point(10, 344);
+            lblLeaveType.Name = "lblLeaveType";
+            lblLeaveType.Size = new Size(92, 21);
+            lblLeaveType.TabIndex = 14;
+            lblLeaveType.Text = "İzin sebebi";
             // 
-            // yorumtxt
+            // txtOther
             // 
-            yorumtxt.BorderStyle = BorderStyle.FixedSingle;
-            yorumtxt.Font = new Font("Segoe UI", 18F);
-            yorumtxt.Location = new Point(14, 663);
-            yorumtxt.MaxLength = 500;
-            yorumtxt.Multiline = true;
-            yorumtxt.Name = "yorumtxt";
-            yorumtxt.Size = new Size(741, 201);
-            yorumtxt.TabIndex = 13;
+            txtOther.BorderStyle = BorderStyle.FixedSingle;
+            txtOther.Font = new Font("Segoe UI", 18F);
+            txtOther.Location = new Point(10, 437);
+            txtOther.Margin = new Padding(3, 2, 3, 2);
+            txtOther.MaxLength = 500;
+            txtOther.Multiline = true;
+            txtOther.Name = "txtOther";
+            txtOther.Size = new Size(649, 151);
+            txtOther.TabIndex = 13;
             // 
-            // yorumlbl
+            // lblOther
             // 
-            yorumlbl.AutoSize = true;
-            yorumlbl.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            yorumlbl.Location = new Point(14, 632);
-            yorumlbl.Name = "yorumlbl";
-            yorumlbl.Size = new Size(64, 28);
-            yorumlbl.TabIndex = 14;
-            yorumlbl.Text = "Diğer";
-            yorumlbl.Click += yorumlbl_Click;
+            lblOther.AutoSize = true;
+            lblOther.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblOther.Location = new Point(10, 414);
+            lblOther.Name = "lblOther";
+            lblOther.Size = new Size(52, 21);
+            lblOther.TabIndex = 14;
+            lblOther.Text = "Diğer";
             // 
-            // label13
+            // lblEndDate
             // 
-            label13.AutoSize = true;
-            label13.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label13.Location = new Point(389, 878);
-            label13.Name = "label13";
-            label13.Size = new Size(111, 28);
-            label13.TabIndex = 24;
-            label13.Text = "Bitiş tarihi";
+            lblEndDate.AutoSize = true;
+            lblEndDate.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblEndDate.Location = new Point(331, 19);
+            lblEndDate.Name = "lblEndDate";
+            lblEndDate.Size = new Size(88, 21);
+            lblEndDate.TabIndex = 24;
+            lblEndDate.Text = "Bitiş tarihi";
             // 
-            // label12
+            // lblStartDate
             // 
-            label12.AutoSize = true;
-            label12.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label12.Location = new Point(14, 878);
-            label12.Name = "label12";
-            label12.Size = new Size(159, 28);
-            label12.TabIndex = 21;
-            label12.Text = "Başlangıç tarihi";
-            label12.Click += label12_Click_1;
+            lblStartDate.AutoSize = true;
+            lblStartDate.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblStartDate.Location = new Point(3, 19);
+            lblStartDate.Name = "lblStartDate";
+            lblStartDate.Size = new Size(128, 21);
+            lblStartDate.TabIndex = 21;
+            lblStartDate.Text = "Başlangıç tarihi";
             // 
-            // endDatePicker
+            // dtEndDate
             // 
-            endDatePicker.CalendarFont = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            endDatePicker.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            endDatePicker.Location = new Point(389, 909);
-            endDatePicker.MinDate = new DateTime(2024, 12, 10, 0, 0, 0, 0);
-            endDatePicker.Name = "endDatePicker";
-            endDatePicker.Size = new Size(366, 47);
-            endDatePicker.TabIndex = 23;
+            dtEndDate.CalendarFont = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            dtEndDate.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            dtEndDate.Location = new Point(331, 43);
+            dtEndDate.Margin = new Padding(3, 2, 3, 2);
+            dtEndDate.MinDate = new DateTime(2024, 12, 10, 0, 0, 0, 0);
+            dtEndDate.Name = "dtEndDate";
+            dtEndDate.Size = new Size(318, 39);
+            dtEndDate.TabIndex = 23;
             // 
-            // startDatePicker
+            // dtStartDate
             // 
-            startDatePicker.CalendarFont = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            startDatePicker.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            startDatePicker.Location = new Point(14, 909);
-            startDatePicker.MinDate = new DateTime(2024, 12, 10, 0, 0, 0, 0);
-            startDatePicker.Name = "startDatePicker";
-            startDatePicker.Size = new Size(366, 47);
-            startDatePicker.TabIndex = 25;
+            dtStartDate.CalendarFont = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            dtStartDate.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            dtStartDate.Location = new Point(3, 43);
+            dtStartDate.Margin = new Padding(3, 2, 3, 2);
+            dtStartDate.MinDate = new DateTime(2024, 12, 10, 0, 0, 0, 0);
+            dtStartDate.Name = "dtStartDate";
+            dtStartDate.Size = new Size(321, 39);
+            dtStartDate.TabIndex = 25;
             // 
-            // button1
+            // btnSaveLeaveRequest
             // 
-            button1.BackColor = Color.LimeGreen;
-            button1.FlatAppearance.BorderColor = Color.White;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
-            button1.ForeColor = SystemColors.Control;
-            button1.Location = new Point(14, 976);
-            button1.Name = "button1";
-            button1.Size = new Size(224, 86);
-            button1.TabIndex = 26;
-            button1.Text = "Gönder";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            btnSaveLeaveRequest.BackColor = Color.LimeGreen;
+            btnSaveLeaveRequest.FlatAppearance.BorderColor = Color.White;
+            btnSaveLeaveRequest.FlatAppearance.BorderSize = 0;
+            btnSaveLeaveRequest.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            btnSaveLeaveRequest.ForeColor = SystemColors.Control;
+            btnSaveLeaveRequest.Location = new Point(3, 93);
+            btnSaveLeaveRequest.Margin = new Padding(3, 2, 3, 2);
+            btnSaveLeaveRequest.Name = "btnSaveLeaveRequest";
+            btnSaveLeaveRequest.Size = new Size(196, 64);
+            btnSaveLeaveRequest.TabIndex = 26;
+            btnSaveLeaveRequest.Text = "İzin Talep Et";
+            btnSaveLeaveRequest.UseVisualStyleBackColor = false;
+            btnSaveLeaveRequest.Click += BtnSaveLeaveRequest_Click;
             // 
-            // label3
+            // txtSearch
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            label3.Location = new Point(12, 98);
-            label3.Name = "label3";
-            label3.Size = new Size(194, 41);
-            label3.TabIndex = 28;
-            label3.Text = "İsim Soyisim";
+            txtSearch.BorderStyle = BorderStyle.FixedSingle;
+            txtSearch.Font = new Font("Segoe UI", 18F);
+            txtSearch.Location = new Point(10, 72);
+            txtSearch.Margin = new Padding(3, 2, 3, 2);
+            txtSearch.MaxLength = 11;
+            txtSearch.Multiline = true;
+            txtSearch.Name = "txtSearch";
+            txtSearch.PlaceholderText = "Çalışan Arama";
+            txtSearch.Size = new Size(296, 37);
+            txtSearch.TabIndex = 29;
+            txtSearch.TextChanged += TxtSearch_TextChanged;
             // 
-            // aramaTxt
+            // lstEmployees
             // 
-            aramaTxt.BorderStyle = BorderStyle.FixedSingle;
-            aramaTxt.Font = new Font("Segoe UI", 18F);
-            aramaTxt.Location = new Point(12, 142);
-            aramaTxt.MaxLength = 11;
-            aramaTxt.Multiline = true;
-            aramaTxt.Name = "aramaTxt";
-            aramaTxt.Size = new Size(338, 49);
-            aramaTxt.TabIndex = 29;
-            aramaTxt.TextChanged += aramaTxt_TextChanged;
+            lstEmployees.FormattingEnabled = true;
+            lstEmployees.ItemHeight = 15;
+            lstEmployees.Location = new Point(10, 113);
+            lstEmployees.Margin = new Padding(3, 2, 3, 2);
+            lstEmployees.Name = "lstEmployees";
+            lstEmployees.Size = new Size(296, 229);
+            lstEmployees.TabIndex = 31;
             // 
-            // calisanlst
+            // cmbLeaveStatus
             // 
-            calisanlst.FormattingEnabled = true;
-            calisanlst.Location = new Point(12, 215);
-            calisanlst.Name = "calisanlst";
-            calisanlst.Size = new Size(338, 304);
-            calisanlst.TabIndex = 31;
+            cmbLeaveStatus.Font = new Font("Segoe UI", 18F);
+            cmbLeaveStatus.FormattingEnabled = true;
+            cmbLeaveStatus.ItemHeight = 32;
+            cmbLeaveStatus.Items.AddRange(new object[] { "Beklemede", "Onaylandı ", "Reddedildi" });
+            cmbLeaveStatus.Location = new Point(363, 368);
+            cmbLeaveStatus.Margin = new Padding(3, 2, 3, 2);
+            cmbLeaveStatus.Name = "cmbLeaveStatus";
+            cmbLeaveStatus.Size = new Size(296, 40);
+            cmbLeaveStatus.TabIndex = 32;
             // 
-            // onayCombo
+            // lblLeaveStatus
             // 
-            onayCombo.Font = new Font("Segoe UI", 18F);
-            onayCombo.FormattingEnabled = true;
-            onayCombo.ItemHeight = 41;
-            onayCombo.Items.AddRange(new object[] { "Beklemede", "Onaylandı ", "Reddedildi" });
-            onayCombo.Location = new Point(417, 570);
-            onayCombo.Name = "onayCombo";
-            onayCombo.Size = new Size(338, 49);
-            onayCombo.TabIndex = 32;
+            lblLeaveStatus.AutoSize = true;
+            lblLeaveStatus.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblLeaveStatus.Location = new Point(363, 344);
+            lblLeaveStatus.Name = "lblLeaveStatus";
+            lblLeaveStatus.Size = new Size(115, 21);
+            lblLeaveStatus.TabIndex = 33;
+            lblLeaveStatus.Text = "Onay durumu";
             // 
-            // label4
+            // lstLeaveRequest
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label4.Location = new Point(417, 539);
-            label4.Name = "label4";
-            label4.Size = new Size(141, 28);
-            label4.TabIndex = 33;
-            label4.Text = "Onay durumu";
+            lstLeaveRequest.FormattingEnabled = true;
+            lstLeaveRequest.ItemHeight = 15;
+            lstLeaveRequest.Location = new Point(363, 113);
+            lstLeaveRequest.Margin = new Padding(3, 2, 3, 2);
+            lstLeaveRequest.Name = "lstLeaveRequest";
+            lstLeaveRequest.Size = new Size(296, 229);
+            lstLeaveRequest.TabIndex = 34;
+            lstLeaveRequest.SelectedIndexChanged += LstLeaveRequest_SelectedIndexChanged;
             // 
-            // izinLst
+            // btnUpdateLeaveRequest
             // 
-            izinLst.FormattingEnabled = true;
-            izinLst.Location = new Point(429, 215);
-            izinLst.Name = "izinLst";
-            izinLst.Size = new Size(338, 304);
-            izinLst.TabIndex = 34;
+            btnUpdateLeaveRequest.BackColor = Color.FromArgb(192, 192, 0);
+            btnUpdateLeaveRequest.FlatAppearance.BorderColor = Color.White;
+            btnUpdateLeaveRequest.FlatAppearance.BorderSize = 0;
+            btnUpdateLeaveRequest.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            btnUpdateLeaveRequest.ForeColor = SystemColors.Control;
+            btnUpdateLeaveRequest.Location = new Point(233, 93);
+            btnUpdateLeaveRequest.Margin = new Padding(3, 2, 3, 2);
+            btnUpdateLeaveRequest.Name = "btnUpdateLeaveRequest";
+            btnUpdateLeaveRequest.Size = new Size(196, 64);
+            btnUpdateLeaveRequest.TabIndex = 36;
+            btnUpdateLeaveRequest.Text = "İzin Güncelle";
+            btnUpdateLeaveRequest.UseVisualStyleBackColor = false;
+            btnUpdateLeaveRequest.Click += BtnUpdateLeaveRequest_Click;
             // 
-            // button2
+            // btnDeleteLeaveRequest
             // 
-            button2.Location = new Point(429, 142);
-            button2.Name = "button2";
-            button2.Size = new Size(326, 49);
-            button2.TabIndex = 35;
-            button2.Text = "İzin taleplerini getir";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click_1;
+            btnDeleteLeaveRequest.BackColor = Color.Red;
+            btnDeleteLeaveRequest.FlatAppearance.BorderColor = Color.White;
+            btnDeleteLeaveRequest.FlatAppearance.BorderSize = 0;
+            btnDeleteLeaveRequest.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            btnDeleteLeaveRequest.ForeColor = SystemColors.Control;
+            btnDeleteLeaveRequest.Location = new Point(456, 93);
+            btnDeleteLeaveRequest.Margin = new Padding(3, 2, 3, 2);
+            btnDeleteLeaveRequest.Name = "btnDeleteLeaveRequest";
+            btnDeleteLeaveRequest.Size = new Size(196, 64);
+            btnDeleteLeaveRequest.TabIndex = 37;
+            btnDeleteLeaveRequest.Text = "İzin Sil";
+            btnDeleteLeaveRequest.UseVisualStyleBackColor = false;
+            btnDeleteLeaveRequest.Click += BtnDeleteLeaveRequest_Click;
             // 
-            // button3
+            // pBottomTab
             // 
-            button3.BackColor = Color.FromArgb(192, 192, 0);
-            button3.FlatAppearance.BorderColor = Color.White;
-            button3.FlatAppearance.BorderSize = 0;
-            button3.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
-            button3.ForeColor = SystemColors.Control;
-            button3.Location = new Point(276, 976);
-            button3.Name = "button3";
-            button3.Size = new Size(224, 86);
-            button3.TabIndex = 36;
-            button3.Text = "Güncelle";
-            button3.UseVisualStyleBackColor = false;
+            pBottomTab.Controls.Add(lblStartDate);
+            pBottomTab.Controls.Add(btnDeleteLeaveRequest);
+            pBottomTab.Controls.Add(dtEndDate);
+            pBottomTab.Controls.Add(btnUpdateLeaveRequest);
+            pBottomTab.Controls.Add(lblEndDate);
+            pBottomTab.Controls.Add(dtStartDate);
+            pBottomTab.Controls.Add(btnSaveLeaveRequest);
+            pBottomTab.Location = new Point(10, 593);
+            pBottomTab.Name = "pBottomTab";
+            pBottomTab.Size = new Size(652, 162);
+            pBottomTab.TabIndex = 38;
             // 
-            // button4
+            // txtSearchLeaveRequest
             // 
-            button4.BackColor = Color.Red;
-            button4.FlatAppearance.BorderColor = Color.White;
-            button4.FlatAppearance.BorderSize = 0;
-            button4.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
-            button4.ForeColor = SystemColors.Control;
-            button4.Location = new Point(531, 976);
-            button4.Name = "button4";
-            button4.Size = new Size(224, 86);
-            button4.TabIndex = 37;
-            button4.Text = "Sil";
-            button4.UseVisualStyleBackColor = false;
+            txtSearchLeaveRequest.BorderStyle = BorderStyle.FixedSingle;
+            txtSearchLeaveRequest.Font = new Font("Segoe UI", 18F);
+            txtSearchLeaveRequest.Location = new Point(363, 72);
+            txtSearchLeaveRequest.Margin = new Padding(3, 2, 3, 2);
+            txtSearchLeaveRequest.MaxLength = 11;
+            txtSearchLeaveRequest.Multiline = true;
+            txtSearchLeaveRequest.Name = "txtSearchLeaveRequest";
+            txtSearchLeaveRequest.PlaceholderText = "İzin Talebi Arama";
+            txtSearchLeaveRequest.Size = new Size(296, 37);
+            txtSearchLeaveRequest.TabIndex = 29;
+            txtSearchLeaveRequest.TextChanged += TxtSearchLeaveRequest_TextChanged;
             // 
             // LeaveRequestForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
-            ClientSize = new Size(790, 509);
-            Controls.Add(button4);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(izinLst);
-            Controls.Add(label4);
-            Controls.Add(onayCombo);
-            Controls.Add(calisanlst);
-            Controls.Add(aramaTxt);
-            Controls.Add(label3);
-            Controls.Add(button1);
-            Controls.Add(startDatePicker);
-            Controls.Add(label13);
-            Controls.Add(label12);
-            Controls.Add(endDatePicker);
-            Controls.Add(label9);
-            Controls.Add(yorumtxt);
-            Controls.Add(yorumlbl);
-            Controls.Add(izinCombo);
-            Controls.Add(label2);
-            Controls.Add(label1);
+            ClientSize = new Size(691, 611);
+            Controls.Add(pBottomTab);
+            Controls.Add(lstLeaveRequest);
+            Controls.Add(lblLeaveStatus);
+            Controls.Add(cmbLeaveStatus);
+            Controls.Add(lstEmployees);
+            Controls.Add(txtSearchLeaveRequest);
+            Controls.Add(txtSearch);
+            Controls.Add(lblLeaveType);
+            Controls.Add(txtOther);
+            Controls.Add(lblOther);
+            Controls.Add(cmbLeaveType);
+            Controls.Add(lblQuotes);
+            Controls.Add(lblLeaveRequestForm);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "LeaveRequestForm";
-            Text = "LeaveRequestForm";
+            Text = "İzin Talebi Formu";
             Load += LeaveRequestForm_Load;
+            pBottomTab.ResumeLayout(false);
+            pBottomTab.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Label label1;
-        private Label label2;
-        private ComboBox izinCombo;
-        private Label label9;
-        private TextBox yorumtxt;
-        private Label yorumlbl;
-        private Label label13;
-        private Label label12;
-        private DateTimePicker endDatePicker;
-        private DateTimePicker startDatePicker;
-        private Button button1;
-        private Label label3;
-        private TextBox aramaTxt;
-        private ListBox calisanlst;
-        private ComboBox onayCombo;
-        private Label label4;
-        private ListBox izinLst;
-        private Button button2;
-        private Button button3;
-        private Button button4;
+        private Label lblLeaveRequestForm;
+        private Label lblQuotes;
+        private ComboBox cmbLeaveType;
+        private Label lblLeaveType;
+        private TextBox txtOther;
+        private Label lblOther;
+        private Label lblEndDate;
+        private Label lblStartDate;
+        private DateTimePicker dtEndDate;
+        private DateTimePicker dtStartDate;
+        private Button btnSaveLeaveRequest;
+        private TextBox txtSearch;
+        private ListBox lstEmployees;
+        private ComboBox cmbLeaveStatus;
+        private Label lblLeaveStatus;
+        private ListBox lstLeaveRequest;
+        private Button btnUpdateLeaveRequest;
+        private Button btnDeleteLeaveRequest;
+        private Panel pBottomTab;
+        private TextBox txtSearchLeaveRequest;
     }
 }

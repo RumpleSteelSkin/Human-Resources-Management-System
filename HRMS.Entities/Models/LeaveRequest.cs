@@ -15,7 +15,7 @@ namespace HRMS.Entities.Models
 
         public override string ToString()
         {
-            return ID + " " + LeaveType + " " + LeaveStatus;
+            return Employee?.FullName + " " + LeaveType + " " + LeaveStatus;
         }
     }
 }

@@ -1,15 +1,6 @@
 ﻿using HRMS.Entities.Models;
 using HRMS.UI.Tools;
-using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace HRMS.UI.Forms
 {
@@ -19,114 +10,191 @@ namespace HRMS.UI.Forms
         {
             InitializeComponent();
 
-            startDatePicker.ValueChanged += (sender, e) =>
+            dtStartDate.ValueChanged += (sender, e) =>
             {
-                if (endDatePicker.Value < startDatePicker.Value)
+                if (dtEndDate.Value < dtStartDate.Value)
                 {
                     MessageBox.Show("Bitiş tarihi, başlangıç tarihinden önce olamaz!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                    endDatePicker.Value = startDatePicker.Value;
+                    dtEndDate.Value = dtStartDate.Value;
                 }
             };
 
-            endDatePicker.ValueChanged += (sender, e) =>
+            dtEndDate.ValueChanged += (sender, e) =>
             {
-                if (endDatePicker.Value < startDatePicker.Value)
+                if (dtEndDate.Value < dtStartDate.Value)
                 {
                     MessageBox.Show("Bitiş tarihi, başlangıç tarihinden önce olamaz!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                    endDatePicker.Value = startDatePicker.Value;
+                    dtEndDate.Value = dtStartDate.Value;
                 }
             };
         }
-
-
-
-        private void label1_Click(object sender, EventArgs e)
+        #region GLOBALS
+        LeaveRequest? selectedLeaveRequest;
+        #endregion
+        #region METHODS
+        private void GetAllEmployeeAndLeaveRequestToList()
         {
-
+            try
+            {
+                FP.UpdateListBox(lstEmployees, "ID", "Name", FP.EmployeeService?.GetAll()!);
+                FP.UpdateListBox(lstLeaveRequest, "ID", null!, FP.LeaveRequestService?.GetAll()!, LstLeaveRequest_SelectedIndexChanged!);
+            }
+            catch (Exception ex)
+            {
+                FP.ShowError(ex);
+            }
         }
-
-        private void label12_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox7_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        #endregion
+        #region EVENTS
         private void LeaveRequestForm_Load(object sender, EventArgs e)
         {
-            yorumtxt.Visible = false;
-            yorumlbl.Visible = false;
-
+            GetAllEmployeeAndLeaveRequestToList();
+            txtOther.Visible = false;
+            lblOther.Visible = false;
+            pBottomTab.Location = new Point(10, lblOther.Location.Y);
         }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void CmbLeaveType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (izinCombo.SelectedIndex == 7)
+            if (cmbLeaveType.SelectedIndex == 7)
             {
-                yorumlbl.Visible = true;
-                yorumtxt.Visible = true;
+                lblOther.Visible = true;
+                txtOther.Visible = true;
+                pBottomTab.Location = new Point(10, 593);
             }
             else
             {
-                yorumtxt.Visible = false; yorumlbl.Visible = false;
-
+                txtOther.Visible = false;
+                lblOther.Visible = false;
+                pBottomTab.Location = new Point(10, lblOther.Location.Y);
             }
         }
-
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        private void TxtSearch_TextChanged(object sender, EventArgs e)
         {
-
+            FP.UpdateListBox(lstEmployees, "ID", null!, FP.EmployeeService?.GetAll()?.Where(emp => emp.FullName!.Contains(txtSearch.Text, StringComparison.OrdinalIgnoreCase)).ToList()!);
         }
-
-        private void yorumlbl_Click(object sender, EventArgs e)
+        private void BtnSaveLeaveRequest_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void label12_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-            LeaveRequest leaveRequest = new()
+            try
             {
-                EmployeeID = Guid.TryParse(calisanlst.SelectedValue?.ToString(), out var employeeId) ? employeeId : throw new Exception("Geçerli bir çalışan seçiniz."),
-                StartDate = startDatePicker.Value,
-                EndDate = endDatePicker.Value,
-                LeaveType = izinCombo.Text,
-                LeaveStatus = onayCombo.Text
-            };
-            FP.LeaveRequestService?.Create(leaveRequest);
-        }
+                DialogResult dr = MessageBox.Show($"{lstEmployees.SelectedItem?.ToString()} isimli çalışana izin talebi eklemek istediğinize emin misiniz?", "İzin Talebi Ekleme İşlemi", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dr == DialogResult.Yes)
+                {
+                    if (lstEmployees.SelectedIndex != -1 && lstEmployees.SelectedItem != null)
+                    {
+                        string leaveTypeSet = cmbLeaveType.SelectedIndex == 7 ? txtOther.Text : cmbLeaveType.Text;
 
-        private void calısanlarCombo_SelectedIndexChanged(object sender, EventArgs e)
+                        LeaveRequest leaveRequest = new()
+                        {
+                            EmployeeID = Guid.TryParse(lstEmployees.SelectedValue?.ToString(), out var employeeId) ? employeeId : throw new Exception("Geçerli bir çalışan seçiniz."),
+                            StartDate = dtStartDate.Value,
+                            EndDate = dtEndDate.Value,
+                            LeaveType = leaveTypeSet,
+                            LeaveStatus = cmbLeaveStatus.Text
+                        };
+                        FP.LeaveRequestService?.Create(leaveRequest);
+                        MessageBox.Show("İşlem Başarılı!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                FP.ShowError(ex);
+            }
+        }
+        private void TxtSearchLeaveRequest_TextChanged(object sender, EventArgs e)
         {
-
+            FP.UpdateListBox(lstLeaveRequest, "ID", null!, FP.LeaveRequestService?.GetAll()?.Where(emp => emp.Employee!.FullName!.Contains(txtSearchLeaveRequest.Text, StringComparison.OrdinalIgnoreCase)).ToList()!, LstLeaveRequest_SelectedIndexChanged!);
         }
-
-        private void button2_Click(object sender, EventArgs e)
+        private void BtnUpdateLeaveRequest_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                if (lstLeaveRequest.SelectedIndex != -1 && lstLeaveRequest.SelectedValue != null)
+                {
+                    if (selectedLeaveRequest != null)
+                    {
+                        DialogResult dr = MessageBox.Show($"{lstLeaveRequest?.SelectedItem?.ToString()} izin talebini güncellemek istediğinize emin misiniz?", "İzin Talebi Güncelleme İşlemi", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dr == DialogResult.Yes)
+                        {
+                            string leaveTypeSet = cmbLeaveType.SelectedIndex == 7 ? txtOther.Text : cmbLeaveType.Text;
+                            selectedLeaveRequest.StartDate = dtStartDate.Value;
+                            selectedLeaveRequest.EndDate = dtEndDate.Value;
+                            selectedLeaveRequest.LeaveStatus = cmbLeaveStatus.Text;
+                            selectedLeaveRequest.LeaveType = leaveTypeSet;
+                            selectedLeaveRequest = null;
+                            MessageBox.Show("İşlem Başarılı!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            GetAllEmployeeAndLeaveRequestToList();
+                            FP.FormClear(this);
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Güncellemek istediğiniz bir izin talebi seçiniz...");
+                }
+            }
+            catch (Exception ex)
+            {
+                FP.ShowError(ex);
+            }
         }
-
-        private void aramaTxt_TextChanged(object sender, EventArgs e)
+        private void BtnDeleteLeaveRequest_Click(object sender, EventArgs e)
         {
-            FP.UpdateListBox(calisanlst, "ID", null, FP.EmployeeService?.GetAll().Where(emp => emp.FullName.Contains(aramaTxt.Text)).ToList());
-            //calisanlst.ValueMember = "ID"; 
-            //calisanlst.DataSource = FP.EmployeeService?.GetAll().Where(emp => emp.FullName.Contains(aramaTxt.Text)).ToList();
-        }
+            try
+            {
+                if (lstLeaveRequest.SelectedIndex != -1 && lstLeaveRequest.SelectedValue != null)
+                {
 
-        private void button2_Click_1(object sender, EventArgs e)
-        {
-            FP.UpdateListBox(izinLst, "ID", null, FP.LeaveRequestService?.GetAll());
+                    DialogResult dr = MessageBox.Show($"{lstLeaveRequest?.SelectedItem?.ToString()} izin talebini silmek istediğinize emin misiniz?", "İzin Talebi Silme İşlemi", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dr == DialogResult.Yes)
+                    {
+                        FP.LeaveRequestService?.Delete(Guid.TryParse(lstLeaveRequest?.SelectedValue?.ToString(), out var leaveRequestID) ? leaveRequestID : throw new Exception("Geçerli bir izin talebi seçiniz."));
+                        selectedLeaveRequest = null;
+                        MessageBox.Show("İşlem Başarılı!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        GetAllEmployeeAndLeaveRequestToList();
+                        FP.FormClear(this);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Listeden bir izin talebi seçiniz!");
+                }
+            }
+            catch (Exception ex)
+            {
+                FP.ShowError(ex);
+            }
         }
+        private void LstLeaveRequest_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (lstLeaveRequest.SelectedIndex != -1 && lstLeaveRequest.SelectedItem != null)
+                {
+                    selectedLeaveRequest = (LeaveRequest)lstLeaveRequest.SelectedItem;
+                    int index = cmbLeaveType.FindStringExact(selectedLeaveRequest.LeaveType);
+                    if (index >= 0)
+                    {
+                        cmbLeaveType.Text = selectedLeaveRequest.LeaveType;
+                    }
+                    else
+                    {
+                        cmbLeaveType.SelectedIndex = 7;
+                        txtOther.Text = selectedLeaveRequest.LeaveType;
+                    }
+                    lstEmployees.SelectedValue = selectedLeaveRequest.EmployeeID;
+                    cmbLeaveStatus.Text = selectedLeaveRequest.LeaveStatus;
+                    dtStartDate.Value = selectedLeaveRequest.StartDate;
+                    dtEndDate.Value = selectedLeaveRequest.EndDate;
+                }
+            }
+            catch (Exception ex)
+            {
+                FP.ShowError(ex);
+            }
+        }
+        #endregion
     }
 }
