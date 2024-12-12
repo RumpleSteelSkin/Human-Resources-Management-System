@@ -36,8 +36,8 @@
             yorumtxt = new TextBox();
             label5 = new Label();
             aramaTxt = new TextBox();
-            calisanliste = new TextBox();
             button1 = new Button();
+            calisanliste = new ListBox();
             SuspendLayout();
             // 
             // label1
@@ -120,16 +120,6 @@
             aramaTxt.TabIndex = 8;
             aramaTxt.TextChanged += textBox1_TextChanged;
             // 
-            // calisanliste
-            // 
-            calisanliste.Font = new Font("Segoe UI", 12F);
-            calisanliste.Location = new Point(12, 193);
-            calisanliste.Multiline = true;
-            calisanliste.Name = "calisanliste";
-            calisanliste.PlaceholderText = "Çalışan listesi";
-            calisanliste.Size = new Size(399, 288);
-            calisanliste.TabIndex = 9;
-            // 
             // button1
             // 
             button1.BackColor = Color.FromArgb(128, 255, 128);
@@ -142,13 +132,21 @@
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
+            // calisanliste
+            // 
+            calisanliste.FormattingEnabled = true;
+            calisanliste.Location = new Point(12, 202);
+            calisanliste.Name = "calisanliste";
+            calisanliste.Size = new Size(399, 284);
+            calisanliste.TabIndex = 11;
+            // 
             // PerformanceReviewForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(671, 864);
-            Controls.Add(button1);
             Controls.Add(calisanliste);
+            Controls.Add(button1);
             Controls.Add(aramaTxt);
             Controls.Add(label5);
             Controls.Add(yorumtxt);
@@ -174,7 +172,7 @@
         private TextBox yorumtxt;
         private Label label5;
         private TextBox aramaTxt;
-        private TextBox calisanliste;
         private Button button1;
+        private ListBox calisanliste;
     }
 }
