@@ -1,4 +1,6 @@
-﻿namespace HRMS.Entities.Models
+﻿using HRMS.Entities.Abstractions;
+
+namespace HRMS.Entities.Models
 {
     public class TrainingProgramEmployee
     {

@@ -52,6 +52,8 @@
             groupBox1 = new GroupBox();
             dataGridView1 = new DataGridView();
             txtSubordinate = new TextBox();
+            btnUpdate = new Button();
+            btnGetAll = new Button();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -135,7 +137,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(362, 37);
+            label6.Location = new Point(282, 30);
             label6.Name = "label6";
             label6.Size = new Size(101, 20);
             label6.TabIndex = 9;
@@ -151,14 +153,14 @@
             // 
             // dtpDateOfBirth
             // 
-            dtpDateOfBirth.Location = new Point(496, 32);
+            dtpDateOfBirth.Location = new Point(416, 25);
             dtpDateOfBirth.Name = "dtpDateOfBirth";
             dtpDateOfBirth.Size = new Size(250, 27);
             dtpDateOfBirth.TabIndex = 11;
             // 
             // dtpHireDate
             // 
-            dtpHireDate.Location = new Point(496, 86);
+            dtpHireDate.Location = new Point(416, 79);
             dtpHireDate.Name = "dtpHireDate";
             dtpHireDate.Size = new Size(250, 27);
             dtpHireDate.TabIndex = 12;
@@ -166,7 +168,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(361, 91);
+            label7.Location = new Point(281, 84);
             label7.Name = "label7";
             label7.Size = new Size(129, 20);
             label7.TabIndex = 13;
@@ -174,7 +176,7 @@
             // 
             // dtpTerminationDate
             // 
-            dtpTerminationDate.Location = new Point(496, 136);
+            dtpTerminationDate.Location = new Point(416, 129);
             dtpTerminationDate.Name = "dtpTerminationDate";
             dtpTerminationDate.Size = new Size(250, 27);
             dtpTerminationDate.TabIndex = 14;
@@ -182,7 +184,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(356, 136);
+            label8.Location = new Point(276, 129);
             label8.Name = "label8";
             label8.Size = new Size(137, 20);
             label8.TabIndex = 15;
@@ -190,18 +192,19 @@
             // 
             // btnEkle
             // 
-            btnEkle.Location = new Point(617, 369);
+            btnEkle.Location = new Point(312, 212);
             btnEkle.Name = "btnEkle";
-            btnEkle.Size = new Size(94, 29);
+            btnEkle.Size = new Size(157, 54);
             btnEkle.TabIndex = 16;
             btnEkle.Text = "EKLE";
             btnEkle.UseVisualStyleBackColor = true;
+            btnEkle.Click += btnEkle_Click;
             // 
             // btnCıkar
             // 
-            btnCıkar.Location = new Point(469, 369);
+            btnCıkar.Location = new Point(490, 212);
             btnCıkar.Name = "btnCıkar";
-            btnCıkar.Size = new Size(94, 29);
+            btnCıkar.Size = new Size(157, 54);
             btnCıkar.TabIndex = 17;
             btnCıkar.Text = "ÇIKAR";
             btnCıkar.UseVisualStyleBackColor = true;
@@ -234,9 +237,9 @@
             // groupBox1
             // 
             groupBox1.Controls.Add(dataGridView1);
-            groupBox1.Location = new Point(846, 30);
+            groupBox1.Location = new Point(682, 25);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(454, 408);
+            groupBox1.Size = new Size(726, 413);
             groupBox1.TabIndex = 21;
             groupBox1.TabStop = false;
             groupBox1.Text = "ÇALIŞANLAR";
@@ -248,7 +251,7 @@
             dataGridView1.Location = new Point(3, 23);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(448, 382);
+            dataGridView1.Size = new Size(720, 387);
             dataGridView1.TabIndex = 0;
             // 
             // txtSubordinate
@@ -258,11 +261,32 @@
             txtSubordinate.Size = new Size(151, 27);
             txtSubordinate.TabIndex = 1;
             // 
+            // btnUpdate
+            // 
+            btnUpdate.Location = new Point(312, 286);
+            btnUpdate.Name = "btnUpdate";
+            btnUpdate.Size = new Size(157, 54);
+            btnUpdate.TabIndex = 22;
+            btnUpdate.Text = "GÜNCELLE";
+            btnUpdate.UseVisualStyleBackColor = true;
+            // 
+            // btnGetAll
+            // 
+            btnGetAll.Location = new Point(490, 284);
+            btnGetAll.Name = "btnGetAll";
+            btnGetAll.Size = new Size(157, 56);
+            btnGetAll.TabIndex = 23;
+            btnGetAll.Text = "ÇALIŞANLARI GETİR";
+            btnGetAll.UseVisualStyleBackColor = true;
+            btnGetAll.Click += btnGetAll_Click;
+            // 
             // EmployeeForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1322, 450);
+            ClientSize = new Size(1420, 450);
+            Controls.Add(btnGetAll);
+            Controls.Add(btnUpdate);
             Controls.Add(txtSubordinate);
             Controls.Add(groupBox1);
             Controls.Add(label10);
@@ -288,6 +312,7 @@
             Controls.Add(label1);
             Name = "EmployeeForm";
             Text = "EmployeeForm";
+            Load += EmployeeForm_Load;
             groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
@@ -320,5 +345,7 @@
         private GroupBox groupBox1;
         private DataGridView dataGridView1;
         private TextBox txtSubordinate;
+        private Button btnUpdate;
+        private Button btnGetAll;
     }
 }

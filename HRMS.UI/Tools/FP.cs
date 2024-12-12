@@ -88,6 +88,7 @@ namespace HRMS.UI.Tools
         private static PerformanceReviewService? _performanceReviewService;
         private static PositionService? _positionService;
         private static TrainingProgramService? _trainingProgramService;
+        //private static TrainingProgramEmployeeService? _trainingProgramEmployeeService;
         public static DepartmentService? DepartmentService { get => _departmentService; }
         public static ADBContext? ADBContext { get => _aDBContext; }
         public static EmployeeService? EmployeeService { get => _employeeService; }
@@ -95,6 +96,8 @@ namespace HRMS.UI.Tools
         public static PerformanceReviewService? PerformanceReviewService { get => _performanceReviewService; }
         public static PositionService? PositionService { get => _positionService; }
         public static TrainingProgramService? TrainingProgramService { get => _trainingProgramService; }
+        //public static TrainingProgramEmployeeService? TrainingProgramEmployeeService { get => _trainingProgramEmployeeService; }
+
         /// <summary>
         ///  Tüm generic servislerin tanımlanması bu metod içerisinde gerçekleşir.
         ///  Bir kere çalıştırılması yeterlidir.
@@ -108,6 +111,7 @@ namespace HRMS.UI.Tools
             _performanceReviewService = new(new PerformanceReviewRepository(_aDBContext));
             _positionService = new(new PositionRepository(_aDBContext));
             _trainingProgramService = new(new TrainingProgramRepository(_aDBContext));
+            //_trainingProgramEmployeeService = new(new TrainingProgramEmployeeRepository(_aDBContext));
         }
     }
 }
