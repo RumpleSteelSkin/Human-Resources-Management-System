@@ -31,13 +31,14 @@
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
-            puantxt = new TextBox();
             label4 = new Label();
             yorumtxt = new TextBox();
             label5 = new Label();
             aramaTxt = new TextBox();
             button1 = new Button();
             calisanliste = new ListBox();
+            puan = new NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)puan).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -68,16 +69,6 @@
             label3.Size = new Size(104, 28);
             label3.TabIndex = 3;
             label3.Text = "Çalışanlar";
-            // 
-            // puantxt
-            // 
-            puantxt.Font = new Font("Segoe UI", 18F);
-            puantxt.Location = new Point(433, 139);
-            puantxt.Multiline = true;
-            puantxt.Name = "puantxt";
-            puantxt.PlaceholderText = "0";
-            puantxt.Size = new Size(226, 49);
-            puantxt.TabIndex = 4;
             // 
             // label4
             // 
@@ -140,24 +131,33 @@
             calisanliste.Size = new Size(399, 284);
             calisanliste.TabIndex = 11;
             // 
+            // puan
+            // 
+            puan.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            puan.Location = new Point(433, 141);
+            puan.Name = "puan";
+            puan.Size = new Size(225, 47);
+            puan.TabIndex = 12;
+            // 
             // PerformanceReviewForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(671, 864);
+            Controls.Add(puan);
             Controls.Add(calisanliste);
             Controls.Add(button1);
             Controls.Add(aramaTxt);
             Controls.Add(label5);
             Controls.Add(yorumtxt);
             Controls.Add(label4);
-            Controls.Add(puantxt);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "PerformanceReviewForm";
             Text = "PerformanceReviewForm";
             Load += PerformanceReviewForm_Load;
+            ((System.ComponentModel.ISupportInitialize)puan).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -167,12 +167,12 @@
         private Label label1;
         private Label label2;
         private Label label3;
-        private TextBox puantxt;
         private Label label4;
         private TextBox yorumtxt;
         private Label label5;
         private TextBox aramaTxt;
         private Button button1;
         private ListBox calisanliste;
+        private NumericUpDown puan;
     }
 }

@@ -31,7 +31,31 @@ namespace HRMS.UI.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
+            try
+            {
+                DialogResult dr = MessageBox.Show($"{calisanliste.SelectedItem?.ToString()} isimli çalışana izin talebi eklemek istediğinize emin misiniz?", "İzin Talebi Ekleme İşlemi", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dr == DialogResult.Yes)
+                {
+                    if (calisanliste.SelectedIndex != -1 && calisanliste.SelectedItem != null)
+                    {
+                        //string leaveTypeSet = cmbLeaveType.SelectedIndex == 7 ? txtOther.Text : cmbLeaveType.Text;
 
+                        PerformanceReview performance = new()
+                        {
+                            EmployeeID = Guid.TryParse(calisanliste.SelectedValue?.ToString(), out var employeeId) ? employeeId : throw new Exception("Geçerli bir çalışan seçiniz."),
+                            Score = (int) puan.Value,
+                            Comments = yorumtxt.Text,
+                            ReviewDate = DateTime.Now,
+                        };
+                        FP.PerformanceReviewService?.Create(performance);
+                        MessageBox.Show("İşlem Başarılı!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                FP.ShowError(ex);
+            }
         }
 
         private void aramaTxt_TextChanged(object sender, EventArgs e)
