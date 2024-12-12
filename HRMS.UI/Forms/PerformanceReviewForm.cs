@@ -1,14 +1,6 @@
 ﻿using HRMS.Entities.Models;
 using HRMS.UI.Tools;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace HRMS.UI.Forms
 {
@@ -18,32 +10,26 @@ namespace HRMS.UI.Forms
         {
             InitializeComponent();
         }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void PerformanceReviewForm_Load(object sender, EventArgs e)
         {
-
+            FP.UpdateListBox(calisanliste, "ID", null!, FP.EmployeeService?.GetAll()!);
+            FP.UpdateListBox(lstVoterEmployee, "ID", null!, FP.EmployeeService?.GetAll()!);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             try
             {
-                DialogResult dr = MessageBox.Show($"{calisanliste.SelectedItem?.ToString()} isimli çalışana izin talebi eklemek istediğinize emin misiniz?", "İzin Talebi Ekleme İşlemi", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult dr = MessageBox.Show($"{calisanliste.SelectedItem?.ToString()} isimli çalışana {puan.Value} puan vermek istediğinize emin misiniz?", "Peformans Değerlendirme İşlemi", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dr == DialogResult.Yes)
                 {
-                    if (calisanliste.SelectedIndex != -1 && calisanliste.SelectedItem != null)
+                    if (calisanliste.SelectedIndex != -1 && calisanliste.SelectedItem != null && lstVoterEmployee.SelectedIndex != -1 && lstVoterEmployee.SelectedItem != null)
                     {
-                        //string leaveTypeSet = cmbLeaveType.SelectedIndex == 7 ? txtOther.Text : cmbLeaveType.Text;
-
                         PerformanceReview performance = new()
                         {
                             EmployeeID = Guid.TryParse(calisanliste.SelectedValue?.ToString(), out var employeeId) ? employeeId : throw new Exception("Geçerli bir çalışan seçiniz."),
-                            Score = (int) puan.Value,
+                            ReviewID = Guid.TryParse(lstVoterEmployee.SelectedValue?.ToString(), out var voterID) ? voterID : throw new Exception("Geçerli bir oy verici seçiniz."),
+                            Score = (int)puan.Value,
                             Comments = yorumtxt.Text,
                             ReviewDate = DateTime.Now,
                         };
@@ -58,9 +44,14 @@ namespace HRMS.UI.Forms
             }
         }
 
-        private void aramaTxt_TextChanged(object sender, EventArgs e)
+        private void AramaTxt_TextChanged(object sender, EventArgs e)
         {
-            FP.UpdateListBox(calisanliste, "ID", null, FP.EmployeeService?.GetAll().Where(emp => emp.FullName.Contains(aramaTxt.Text)).ToList());
+            FP.UpdateListBox(calisanliste, "ID", null!, FP.EmployeeService?.GetAll()?.Where(emp => emp.FullName!.Contains(aramaTxt.Text,StringComparison.OrdinalIgnoreCase)).ToList()!);
+        }
+
+        private void TxtVoterSearch_TextChanged(object sender, EventArgs e)
+        {
+            FP.UpdateListBox(lstVoterEmployee, "ID", null!, FP.EmployeeService?.GetAll()?.Where(emp => emp.FullName!.Contains(txtVoterSearch.Text, StringComparison.OrdinalIgnoreCase)).ToList()!);
         }
     }
 }
