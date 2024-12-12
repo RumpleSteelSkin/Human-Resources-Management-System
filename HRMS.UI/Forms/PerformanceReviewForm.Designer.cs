@@ -44,7 +44,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            label1.Location = new Point(12, 19);
+            label1.Location = new Point(11, 19);
             label1.Name = "label1";
             label1.Size = new Size(399, 41);
             label1.TabIndex = 0;
@@ -53,7 +53,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(12, 71);
+            label2.Location = new Point(11, 71);
             label2.Name = "label2";
             label2.Size = new Size(651, 20);
             label2.TabIndex = 1;
@@ -63,7 +63,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label3.Location = new Point(12, 107);
+            label3.Location = new Point(11, 107);
             label3.Name = "label3";
             label3.Size = new Size(104, 28);
             label3.TabIndex = 3;
@@ -72,7 +72,7 @@
             // puantxt
             // 
             puantxt.Font = new Font("Segoe UI", 18F);
-            puantxt.Location = new Point(433, 138);
+            puantxt.Location = new Point(433, 139);
             puantxt.Multiline = true;
             puantxt.Name = "puantxt";
             puantxt.PlaceholderText = "0";
@@ -92,7 +92,7 @@
             // yorumtxt
             // 
             yorumtxt.Font = new Font("Segoe UI", 12F);
-            yorumtxt.Location = new Point(12, 515);
+            yorumtxt.Location = new Point(11, 515);
             yorumtxt.Multiline = true;
             yorumtxt.Name = "yorumtxt";
             yorumtxt.PlaceholderText = "Yorum ekleyiniz";
@@ -103,7 +103,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label5.Location = new Point(12, 484);
+            label5.Location = new Point(11, 484);
             label5.Name = "label5";
             label5.Size = new Size(72, 28);
             label5.TabIndex = 7;
@@ -112,13 +112,13 @@
             // aramaTxt
             // 
             aramaTxt.Font = new Font("Segoe UI", 18F);
-            aramaTxt.Location = new Point(12, 138);
+            aramaTxt.Location = new Point(11, 139);
             aramaTxt.Multiline = true;
             aramaTxt.Name = "aramaTxt";
             aramaTxt.PlaceholderText = "Çalışan ara";
             aramaTxt.Size = new Size(399, 49);
             aramaTxt.TabIndex = 8;
-            aramaTxt.TextChanged += textBox1_TextChanged;
+            aramaTxt.TextChanged += aramaTxt_TextChanged;
             // 
             // button1
             // 
@@ -135,7 +135,7 @@
             // calisanliste
             // 
             calisanliste.FormattingEnabled = true;
-            calisanliste.Location = new Point(12, 202);
+            calisanliste.Location = new Point(11, 194);
             calisanliste.Name = "calisanliste";
             calisanliste.Size = new Size(399, 284);
             calisanliste.TabIndex = 11;

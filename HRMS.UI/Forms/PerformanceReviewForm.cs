@@ -29,14 +29,14 @@ namespace HRMS.UI.Forms
 
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            FP.UpdateListBox(calisanliste, "ID", null, FP.EmployeeService?.GetAll().Where(emp => emp.FullName.Contains(aramaTxt.Text)).ToList());
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
-            
+
+        }
+
+        private void aramaTxt_TextChanged(object sender, EventArgs e)
+        {
+            FP.UpdateListBox(calisanliste, "ID", null, FP.EmployeeService?.GetAll().Where(emp => emp.FullName.Contains(aramaTxt.Text)).ToList());
         }
     }
 }
