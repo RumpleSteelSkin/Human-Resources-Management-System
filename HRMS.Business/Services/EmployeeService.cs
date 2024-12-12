@@ -22,9 +22,9 @@ namespace HRMS.Business.Services
 
         public void Delete(Guid id)
         {
-            var emp = _repository.GetById(id);
-            if (emp != null && emp.IsActive)
-                throw new Exception("Aktif olan bir çalışan silinemez.");
+            //var emp = _repository.GetById(id);
+            //if (emp != null && emp.IsActive)
+            //    throw new Exception("Aktif olan bir çalışan silinemez.");
             _repository.DeleteById(id);
         }
 

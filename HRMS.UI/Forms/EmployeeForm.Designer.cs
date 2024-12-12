@@ -42,20 +42,16 @@
             dtpDateOfBirth = new DateTimePicker();
             dtpHireDate = new DateTimePicker();
             label7 = new Label();
-            dtpTerminationDate = new DateTimePicker();
-            label8 = new Label();
             btnEkle = new Button();
             btnCıkar = new Button();
             label9 = new Label();
             txtSalary = new TextBox();
             label10 = new Label();
-            groupBox1 = new GroupBox();
-            dataGridView1 = new DataGridView();
             txtSubordinate = new TextBox();
             btnUpdate = new Button();
-            btnGetAll = new Button();
-            groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            lstÇalışanlar = new ListBox();
+            lstEmployees = new ListBox();
+            txtArama = new TextBox();
             SuspendLayout();
             // 
             // label1
@@ -93,7 +89,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(0, 135);
+            label3.Location = new Point(0, 238);
             label3.Name = "label3";
             label3.Size = new Size(87, 20);
             label3.TabIndex = 4;
@@ -103,7 +99,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(0, 190);
+            label4.Location = new Point(0, 293);
             label4.Name = "label4";
             label4.Size = new Size(69, 20);
             label4.TabIndex = 5;
@@ -112,7 +108,7 @@
             // cmbPosition
             // 
             cmbPosition.FormattingEnabled = true;
-            cmbPosition.Location = new Point(107, 190);
+            cmbPosition.Location = new Point(107, 293);
             cmbPosition.Name = "cmbPosition";
             cmbPosition.Size = new Size(151, 28);
             cmbPosition.TabIndex = 6;
@@ -120,15 +116,16 @@
             // cmbDepartment
             // 
             cmbDepartment.FormattingEnabled = true;
-            cmbDepartment.Location = new Point(107, 135);
+            cmbDepartment.Location = new Point(107, 238);
             cmbDepartment.Name = "cmbDepartment";
             cmbDepartment.Size = new Size(151, 28);
             cmbDepartment.TabIndex = 7;
+            cmbDepartment.SelectedIndexChanged += cmbDepartment_SelectedIndexChanged;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(0, 253);
+            label5.Location = new Point(0, 189);
             label5.Name = "label5";
             label5.Size = new Size(63, 20);
             label5.TabIndex = 8;
@@ -146,23 +143,25 @@
             // cmbGender
             // 
             cmbGender.FormattingEnabled = true;
-            cmbGender.Location = new Point(107, 245);
+            cmbGender.Items.AddRange(new object[] { "Erkek", "Kadın" });
+            cmbGender.Location = new Point(107, 181);
             cmbGender.Name = "cmbGender";
             cmbGender.Size = new Size(151, 28);
             cmbGender.TabIndex = 10;
+            cmbGender.SelectedIndexChanged += cmbGender_SelectedIndexChanged;
             // 
             // dtpDateOfBirth
             // 
             dtpDateOfBirth.Location = new Point(416, 25);
             dtpDateOfBirth.Name = "dtpDateOfBirth";
-            dtpDateOfBirth.Size = new Size(250, 27);
+            dtpDateOfBirth.Size = new Size(231, 27);
             dtpDateOfBirth.TabIndex = 11;
             // 
             // dtpHireDate
             // 
             dtpHireDate.Location = new Point(416, 79);
             dtpHireDate.Name = "dtpHireDate";
-            dtpHireDate.Size = new Size(250, 27);
+            dtpHireDate.Size = new Size(231, 27);
             dtpHireDate.TabIndex = 12;
             // 
             // label7
@@ -173,22 +172,6 @@
             label7.Size = new Size(129, 20);
             label7.TabIndex = 13;
             label7.Text = "İşe Başlama Tarihi:";
-            // 
-            // dtpTerminationDate
-            // 
-            dtpTerminationDate.Location = new Point(416, 129);
-            dtpTerminationDate.Name = "dtpTerminationDate";
-            dtpTerminationDate.Size = new Size(250, 27);
-            dtpTerminationDate.TabIndex = 14;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Location = new Point(276, 129);
-            label8.Name = "label8";
-            label8.Size = new Size(137, 20);
-            label8.TabIndex = 15;
-            label8.Text = "İşten Ayrılma Tarihi:";
             // 
             // btnEkle
             // 
@@ -208,11 +191,12 @@
             btnCıkar.TabIndex = 17;
             btnCıkar.Text = "ÇIKAR";
             btnCıkar.UseVisualStyleBackColor = true;
+            btnCıkar.Click += btnCıkar_Click;
             // 
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(0, 349);
+            label9.Location = new Point(0, 139);
             label9.Name = "label9";
             label9.Size = new Size(47, 20);
             label9.TabIndex = 18;
@@ -220,7 +204,7 @@
             // 
             // txtSalary
             // 
-            txtSalary.Location = new Point(107, 342);
+            txtSalary.Location = new Point(107, 132);
             txtSalary.Name = "txtSalary";
             txtSalary.Size = new Size(151, 27);
             txtSalary.TabIndex = 19;
@@ -228,74 +212,73 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(2, 302);
+            label10.Location = new Point(671, 44);
             label10.Name = "label10";
             label10.Size = new Size(37, 20);
             label10.TabIndex = 20;
             label10.Text = "Astı:";
             // 
-            // groupBox1
-            // 
-            groupBox1.Controls.Add(dataGridView1);
-            groupBox1.Location = new Point(682, 25);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(726, 413);
-            groupBox1.TabIndex = 21;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "ÇALIŞANLAR";
-            // 
-            // dataGridView1
-            // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Dock = DockStyle.Fill;
-            dataGridView1.Location = new Point(3, 23);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(720, 387);
-            dataGridView1.TabIndex = 0;
-            // 
             // txtSubordinate
             // 
-            txtSubordinate.Location = new Point(107, 295);
+            txtSubordinate.Location = new Point(714, 37);
             txtSubordinate.Name = "txtSubordinate";
-            txtSubordinate.Size = new Size(151, 27);
+            txtSubordinate.Size = new Size(188, 27);
             txtSubordinate.TabIndex = 1;
+            txtSubordinate.TextChanged += txtSubordinate_TextChanged;
             // 
             // btnUpdate
             // 
             btnUpdate.Location = new Point(312, 286);
             btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new Size(157, 54);
+            btnUpdate.Size = new Size(335, 54);
             btnUpdate.TabIndex = 22;
             btnUpdate.Text = "GÜNCELLE";
             btnUpdate.UseVisualStyleBackColor = true;
+            btnUpdate.Click += btnUpdate_Click;
             // 
-            // btnGetAll
+            // lstÇalışanlar
             // 
-            btnGetAll.Location = new Point(490, 284);
-            btnGetAll.Name = "btnGetAll";
-            btnGetAll.Size = new Size(157, 56);
-            btnGetAll.TabIndex = 23;
-            btnGetAll.Text = "ÇALIŞANLARI GETİR";
-            btnGetAll.UseVisualStyleBackColor = true;
-            btnGetAll.Click += btnGetAll_Click;
+            lstÇalışanlar.FormattingEnabled = true;
+            lstÇalışanlar.Location = new Point(714, 85);
+            lstÇalışanlar.Name = "lstÇalışanlar";
+            lstÇalışanlar.Size = new Size(188, 344);
+            lstÇalışanlar.TabIndex = 24;
+            lstÇalışanlar.SelectedIndexChanged += lstÇalışanlar_SelectedIndexChanged;
+            // 
+            // lstEmployees
+            // 
+            lstEmployees.FormattingEnabled = true;
+            lstEmployees.Location = new Point(945, 90);
+            lstEmployees.Name = "lstEmployees";
+            lstEmployees.Size = new Size(448, 344);
+            lstEmployees.TabIndex = 25;
+            lstEmployees.SelectedIndexChanged += lstEmployees_SelectedIndexChanged;
+            // 
+            // txtArama
+            // 
+            txtArama.Location = new Point(945, 44);
+            txtArama.Name = "txtArama";
+            txtArama.PlaceholderText = "Çalışan Arama";
+            txtArama.Size = new Size(448, 27);
+            txtArama.TabIndex = 26;
+            txtArama.TextChanged += txtArama_TextChanged;
             // 
             // EmployeeForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(1420, 450);
-            Controls.Add(btnGetAll);
+            Controls.Add(txtArama);
+            Controls.Add(lstEmployees);
+            Controls.Add(lstÇalışanlar);
             Controls.Add(btnUpdate);
             Controls.Add(txtSubordinate);
-            Controls.Add(groupBox1);
             Controls.Add(label10);
             Controls.Add(txtSalary);
             Controls.Add(label9);
             Controls.Add(btnCıkar);
             Controls.Add(btnEkle);
-            Controls.Add(label8);
-            Controls.Add(dtpTerminationDate);
             Controls.Add(label7);
             Controls.Add(dtpHireDate);
             Controls.Add(dtpDateOfBirth);
@@ -313,8 +296,6 @@
             Name = "EmployeeForm";
             Text = "EmployeeForm";
             Load += EmployeeForm_Load;
-            groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -335,17 +316,15 @@
         private DateTimePicker dtpDateOfBirth;
         private DateTimePicker dtpHireDate;
         private Label label7;
-        private DateTimePicker dtpTerminationDate;
-        private Label label8;
         private Button btnEkle;
         private Button btnCıkar;
         private Label label9;
         private TextBox txtSalary;
         private Label label10;
-        private GroupBox groupBox1;
-        private DataGridView dataGridView1;
         private TextBox txtSubordinate;
         private Button btnUpdate;
-        private Button btnGetAll;
+        private ListBox lstÇalışanlar;
+        private ListBox lstEmployees;
+        private TextBox txtArama;
     }
 }
