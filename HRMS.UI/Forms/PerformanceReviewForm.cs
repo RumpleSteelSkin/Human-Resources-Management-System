@@ -11,7 +11,8 @@ namespace HRMS.UI.Forms
             try
             {
                 FP.UpdateListBox(lstVoterEmployee, "ID", "Name", FP.EmployeeService?.GetAll()!);
-                FP.UpdateListBox(puanlst, "ID", null!, FP.LeaveRequestService?.GetAll()!, puanlst_SelectedIndexChanged!);
+                FP.UpdateListBox(puanlst, "ID", null!, FP.PerformanceReviewService?.GetAll()!, Puanlst_SelectedIndexChanged!);
+                FP.UpdateListBox(calisanliste, "ID", null!, FP.EmployeeService?.GetAll()!);
             }
             catch (Exception ex)
             {
@@ -25,8 +26,7 @@ namespace HRMS.UI.Forms
         }
         private void PerformanceReviewForm_Load(object sender, EventArgs e)
         {
-            FP.UpdateListBox(calisanliste, "ID", null!, FP.EmployeeService?.GetAll()!);
-            FP.UpdateListBox(lstVoterEmployee, "ID", null!, FP.EmployeeService?.GetAll()!);
+            GetAllEmployeeAndPerformanceReview();
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -48,6 +48,8 @@ namespace HRMS.UI.Forms
                         };
                         FP.PerformanceReviewService?.Create(performance);
                         MessageBox.Show("İşlem Başarılı!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        FP.FormClear(this);
+                        GetAllEmployeeAndPerformanceReview();
                     }
                 }
             }
@@ -67,7 +69,7 @@ namespace HRMS.UI.Forms
             FP.UpdateListBox(lstVoterEmployee, "ID", null!, FP.EmployeeService?.GetAll()?.Where(emp => emp.FullName!.Contains(txtVoterSearch.Text, StringComparison.OrdinalIgnoreCase)).ToList()!);
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Button2_Click(object sender, EventArgs e)
         {
             try
             {
@@ -80,15 +82,19 @@ namespace HRMS.UI.Forms
                         {
                             selectedPerformanceReview.Score = (int)puan.Value;
                             selectedPerformanceReview.Comments = yorumtxt.Text;
+                            selectedPerformanceReview.EmployeeID = Guid.TryParse(lstVoterEmployee.SelectedValue?.ToString(), out var votedID) ? votedID : throw new Exception("Geçerli bir puanlanan çalışanı seçiniz.");
+                            selectedPerformanceReview.ReviewID = Guid.TryParse(lstVoterEmployee.SelectedValue?.ToString(), out var voterID) ? voterID : throw new Exception("Geçerli bir puanlayan çalışanı seçiniz.");
+                            FP.PerformanceReviewService?.Update(selectedPerformanceReview);
                             MessageBox.Show("İşlem Başarılı!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             GetAllEmployeeAndPerformanceReview();
+                            selectedPerformanceReview = null;
                             FP.FormClear(this);
                         }
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Güncellemek istediğiniz bir izin talebi seçiniz...");
+                    MessageBox.Show("Güncellemek istediğiniz bir performans değerlendirmesini seçiniz...");
                 }
             }
             catch (Exception ex)
@@ -97,14 +103,59 @@ namespace HRMS.UI.Forms
             }
         }
 
-        private void puanlisteara_TextChanged(object sender, EventArgs e)
+        private void Puanlisteara_TextChanged(object sender, EventArgs e)
         {
-            FP.UpdateListBox(puanlst, "ID", null!, FP.PerformanceReviewService?.GetAll()?.Where(emp => emp.Employee!.FullName!.Contains(puanlisteara.Text, StringComparison.OrdinalIgnoreCase)).ToList()!, puanlst_SelectedIndexChanged!);
+            try
+            {
+                FP.UpdateListBox(puanlst, "ID", null!, FP.PerformanceReviewService?.GetAll()?.Where(emp => emp.Employee!.FullName!.Contains(puanlisteara.Text, StringComparison.OrdinalIgnoreCase) || emp.Review!.FullName!.Contains(puanlisteara.Text, StringComparison.OrdinalIgnoreCase)).ToList()!, Puanlst_SelectedIndexChanged!);
+            }
+            catch { }
         }
 
-        private void puanlst_SelectedIndexChanged(object sender, EventArgs e)
+        private void Puanlst_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            try
+            {
+                if (puanlst.SelectedIndex != -1 && puanlst.SelectedItem != null)
+                {
+                    selectedPerformanceReview = (PerformanceReview)puanlst.SelectedItem;
+                    yorumtxt.Text = selectedPerformanceReview.Comments;
+                    lstVoterEmployee.SelectedValue = selectedPerformanceReview.ReviewID;
+                    calisanliste.SelectedValue = selectedPerformanceReview.EmployeeID;
+                    puan.Value = selectedPerformanceReview.Score;
+                }
+            }
+            catch { }
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (puanlst.SelectedIndex != -1 && puanlst.SelectedValue != null)
+                {
+                    if (selectedPerformanceReview != null)
+                    {
+                        DialogResult dr = MessageBox.Show($"{puanlst?.SelectedItem?.ToString()} performans değerlendirmesini silmek istediğinize emin misiniz?", "Puan Silme İşlemi", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dr == DialogResult.Yes)
+                        {
+                            FP.PerformanceReviewService?.Delete(selectedPerformanceReview.ID);
+                            MessageBox.Show("İşlem Başarılı!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            GetAllEmployeeAndPerformanceReview();
+                            selectedPerformanceReview = null;
+                            FP.FormClear(this);
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Silmek istediğiniz bir performans değerlendirmesini seçiniz...");
+                }
+            }
+            catch (Exception ex)
+            {
+                FP.ShowError(ex);
+            }
         }
     }
 }

@@ -12,5 +12,10 @@ namespace HRMS.Entities.Models
         public Guid EmployeeID { get; set; } 
         public Employee? Review { get; set; } 
         public Guid ReviewID { get; set; }
+
+        public override string ToString()
+        {
+            return $"Puanlayan: {Review?.FullName} - Puanlanan: {Employee?.FullName} Puan: {Score} ";
+        }
     }
 }

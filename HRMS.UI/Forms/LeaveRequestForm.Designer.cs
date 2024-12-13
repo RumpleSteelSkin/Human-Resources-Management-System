@@ -55,9 +55,9 @@
             // 
             lblLeaveRequestForm.AutoSize = true;
             lblLeaveRequestForm.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            lblLeaveRequestForm.Location = new Point(11, 9);
+            lblLeaveRequestForm.Location = new Point(10, 7);
             lblLeaveRequestForm.Name = "lblLeaveRequestForm";
-            lblLeaveRequestForm.Size = new Size(244, 41);
+            lblLeaveRequestForm.Size = new Size(198, 32);
             lblLeaveRequestForm.TabIndex = 0;
             lblLeaveRequestForm.Text = "İzin talep formu";
             // 
@@ -65,9 +65,9 @@
             // 
             lblQuotes.AutoSize = true;
             lblQuotes.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            lblQuotes.Location = new Point(5, 51);
+            lblQuotes.Location = new Point(4, 38);
             lblQuotes.Name = "lblQuotes";
-            lblQuotes.Size = new Size(774, 41);
+            lblQuotes.Size = new Size(644, 32);
             lblQuotes.TabIndex = 1;
             lblQuotes.Text = "---------------------------------------------------------------\r\n";
             // 
@@ -75,11 +75,12 @@
             // 
             cmbLeaveType.Font = new Font("Segoe UI", 18F);
             cmbLeaveType.FormattingEnabled = true;
-            cmbLeaveType.ItemHeight = 41;
+            cmbLeaveType.ItemHeight = 32;
             cmbLeaveType.Items.AddRange(new object[] { "Yıllık izin", "Doğum izni", "Süt izni", "Babalık izni", "Hastalık izni", "Ölüm izni", "Yeni iş arama izni", "Diğer" });
-            cmbLeaveType.Location = new Point(11, 491);
+            cmbLeaveType.Location = new Point(10, 368);
+            cmbLeaveType.Margin = new Padding(3, 2, 3, 2);
             cmbLeaveType.Name = "cmbLeaveType";
-            cmbLeaveType.Size = new Size(338, 49);
+            cmbLeaveType.Size = new Size(296, 40);
             cmbLeaveType.TabIndex = 13;
             cmbLeaveType.SelectedIndexChanged += CmbLeaveType_SelectedIndexChanged;
             // 
@@ -87,9 +88,9 @@
             // 
             lblLeaveType.AutoSize = true;
             lblLeaveType.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            lblLeaveType.Location = new Point(11, 459);
+            lblLeaveType.Location = new Point(10, 344);
             lblLeaveType.Name = "lblLeaveType";
-            lblLeaveType.Size = new Size(113, 28);
+            lblLeaveType.Size = new Size(92, 21);
             lblLeaveType.TabIndex = 14;
             lblLeaveType.Text = "İzin sebebi";
             // 
@@ -97,20 +98,21 @@
             // 
             txtOther.BorderStyle = BorderStyle.FixedSingle;
             txtOther.Font = new Font("Segoe UI", 18F);
-            txtOther.Location = new Point(11, 583);
+            txtOther.Location = new Point(10, 437);
+            txtOther.Margin = new Padding(3, 2, 3, 2);
             txtOther.MaxLength = 500;
             txtOther.Multiline = true;
             txtOther.Name = "txtOther";
-            txtOther.Size = new Size(741, 201);
+            txtOther.Size = new Size(649, 151);
             txtOther.TabIndex = 13;
             // 
             // lblOther
             // 
             lblOther.AutoSize = true;
             lblOther.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            lblOther.Location = new Point(11, 552);
+            lblOther.Location = new Point(10, 414);
             lblOther.Name = "lblOther";
-            lblOther.Size = new Size(64, 28);
+            lblOther.Size = new Size(52, 21);
             lblOther.TabIndex = 14;
             lblOther.Text = "Diğer";
             // 
@@ -118,9 +120,9 @@
             // 
             lblEndDate.AutoSize = true;
             lblEndDate.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            lblEndDate.Location = new Point(378, 25);
+            lblEndDate.Location = new Point(331, 19);
             lblEndDate.Name = "lblEndDate";
-            lblEndDate.Size = new Size(111, 28);
+            lblEndDate.Size = new Size(88, 21);
             lblEndDate.TabIndex = 24;
             lblEndDate.Text = "Bitiş tarihi";
             // 
@@ -128,9 +130,9 @@
             // 
             lblStartDate.AutoSize = true;
             lblStartDate.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            lblStartDate.Location = new Point(3, 25);
+            lblStartDate.Location = new Point(3, 19);
             lblStartDate.Name = "lblStartDate";
-            lblStartDate.Size = new Size(159, 28);
+            lblStartDate.Size = new Size(128, 21);
             lblStartDate.TabIndex = 21;
             lblStartDate.Text = "Başlangıç tarihi";
             // 
@@ -138,20 +140,22 @@
             // 
             dtEndDate.CalendarFont = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 162);
             dtEndDate.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            dtEndDate.Location = new Point(378, 57);
+            dtEndDate.Location = new Point(331, 43);
+            dtEndDate.Margin = new Padding(3, 2, 3, 2);
             dtEndDate.MinDate = new DateTime(2024, 12, 10, 0, 0, 0, 0);
             dtEndDate.Name = "dtEndDate";
-            dtEndDate.Size = new Size(363, 47);
+            dtEndDate.Size = new Size(318, 39);
             dtEndDate.TabIndex = 23;
             // 
             // dtStartDate
             // 
             dtStartDate.CalendarFont = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 162);
             dtStartDate.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            dtStartDate.Location = new Point(3, 57);
+            dtStartDate.Location = new Point(3, 43);
+            dtStartDate.Margin = new Padding(3, 2, 3, 2);
             dtStartDate.MinDate = new DateTime(2024, 12, 10, 0, 0, 0, 0);
             dtStartDate.Name = "dtStartDate";
-            dtStartDate.Size = new Size(366, 47);
+            dtStartDate.Size = new Size(321, 39);
             dtStartDate.TabIndex = 25;
             // 
             // btnSaveLeaveRequest
@@ -161,9 +165,10 @@
             btnSaveLeaveRequest.FlatAppearance.BorderSize = 0;
             btnSaveLeaveRequest.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             btnSaveLeaveRequest.ForeColor = SystemColors.Control;
-            btnSaveLeaveRequest.Location = new Point(3, 124);
+            btnSaveLeaveRequest.Location = new Point(3, 93);
+            btnSaveLeaveRequest.Margin = new Padding(3, 2, 3, 2);
             btnSaveLeaveRequest.Name = "btnSaveLeaveRequest";
-            btnSaveLeaveRequest.Size = new Size(224, 85);
+            btnSaveLeaveRequest.Size = new Size(196, 64);
             btnSaveLeaveRequest.TabIndex = 26;
             btnSaveLeaveRequest.Text = "İzin Talep Et";
             btnSaveLeaveRequest.UseVisualStyleBackColor = false;
@@ -173,50 +178,56 @@
             // 
             txtSearch.BorderStyle = BorderStyle.FixedSingle;
             txtSearch.Font = new Font("Segoe UI", 18F);
-            txtSearch.Location = new Point(11, 96);
+            txtSearch.Location = new Point(10, 72);
+            txtSearch.Margin = new Padding(3, 2, 3, 2);
             txtSearch.MaxLength = 11;
             txtSearch.Multiline = true;
             txtSearch.Name = "txtSearch";
             txtSearch.PlaceholderText = "Çalışan Arama";
-            txtSearch.Size = new Size(338, 49);
+            txtSearch.Size = new Size(296, 37);
             txtSearch.TabIndex = 29;
             txtSearch.TextChanged += TxtSearch_TextChanged;
             // 
             // lstEmployees
             // 
             lstEmployees.FormattingEnabled = true;
-            lstEmployees.Location = new Point(11, 151);
+            lstEmployees.ItemHeight = 15;
+            lstEmployees.Location = new Point(10, 113);
+            lstEmployees.Margin = new Padding(3, 2, 3, 2);
             lstEmployees.Name = "lstEmployees";
-            lstEmployees.Size = new Size(338, 304);
+            lstEmployees.Size = new Size(296, 229);
             lstEmployees.TabIndex = 31;
             // 
             // cmbLeaveStatus
             // 
             cmbLeaveStatus.Font = new Font("Segoe UI", 18F);
             cmbLeaveStatus.FormattingEnabled = true;
-            cmbLeaveStatus.ItemHeight = 41;
+            cmbLeaveStatus.ItemHeight = 32;
             cmbLeaveStatus.Items.AddRange(new object[] { "Beklemede", "Onaylandı ", "Reddedildi" });
-            cmbLeaveStatus.Location = new Point(415, 491);
+            cmbLeaveStatus.Location = new Point(363, 368);
+            cmbLeaveStatus.Margin = new Padding(3, 2, 3, 2);
             cmbLeaveStatus.Name = "cmbLeaveStatus";
-            cmbLeaveStatus.Size = new Size(338, 49);
+            cmbLeaveStatus.Size = new Size(296, 40);
             cmbLeaveStatus.TabIndex = 32;
             // 
             // lblLeaveStatus
             // 
             lblLeaveStatus.AutoSize = true;
             lblLeaveStatus.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            lblLeaveStatus.Location = new Point(415, 459);
+            lblLeaveStatus.Location = new Point(363, 344);
             lblLeaveStatus.Name = "lblLeaveStatus";
-            lblLeaveStatus.Size = new Size(141, 28);
+            lblLeaveStatus.Size = new Size(115, 21);
             lblLeaveStatus.TabIndex = 33;
             lblLeaveStatus.Text = "Onay durumu";
             // 
             // lstLeaveRequest
             // 
             lstLeaveRequest.FormattingEnabled = true;
-            lstLeaveRequest.Location = new Point(415, 151);
+            lstLeaveRequest.ItemHeight = 15;
+            lstLeaveRequest.Location = new Point(363, 113);
+            lstLeaveRequest.Margin = new Padding(3, 2, 3, 2);
             lstLeaveRequest.Name = "lstLeaveRequest";
-            lstLeaveRequest.Size = new Size(338, 304);
+            lstLeaveRequest.Size = new Size(296, 229);
             lstLeaveRequest.TabIndex = 34;
             lstLeaveRequest.SelectedIndexChanged += LstLeaveRequest_SelectedIndexChanged;
             // 
@@ -227,9 +238,10 @@
             btnUpdateLeaveRequest.FlatAppearance.BorderSize = 0;
             btnUpdateLeaveRequest.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             btnUpdateLeaveRequest.ForeColor = SystemColors.Control;
-            btnUpdateLeaveRequest.Location = new Point(266, 124);
+            btnUpdateLeaveRequest.Location = new Point(233, 93);
+            btnUpdateLeaveRequest.Margin = new Padding(3, 2, 3, 2);
             btnUpdateLeaveRequest.Name = "btnUpdateLeaveRequest";
-            btnUpdateLeaveRequest.Size = new Size(224, 85);
+            btnUpdateLeaveRequest.Size = new Size(196, 64);
             btnUpdateLeaveRequest.TabIndex = 36;
             btnUpdateLeaveRequest.Text = "İzin Güncelle";
             btnUpdateLeaveRequest.UseVisualStyleBackColor = false;
@@ -242,9 +254,10 @@
             btnDeleteLeaveRequest.FlatAppearance.BorderSize = 0;
             btnDeleteLeaveRequest.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             btnDeleteLeaveRequest.ForeColor = SystemColors.Control;
-            btnDeleteLeaveRequest.Location = new Point(521, 124);
+            btnDeleteLeaveRequest.Location = new Point(456, 93);
+            btnDeleteLeaveRequest.Margin = new Padding(3, 2, 3, 2);
             btnDeleteLeaveRequest.Name = "btnDeleteLeaveRequest";
-            btnDeleteLeaveRequest.Size = new Size(224, 85);
+            btnDeleteLeaveRequest.Size = new Size(196, 64);
             btnDeleteLeaveRequest.TabIndex = 37;
             btnDeleteLeaveRequest.Text = "İzin Sil";
             btnDeleteLeaveRequest.UseVisualStyleBackColor = false;
@@ -259,31 +272,31 @@
             pBottomTab.Controls.Add(lblEndDate);
             pBottomTab.Controls.Add(dtStartDate);
             pBottomTab.Controls.Add(btnSaveLeaveRequest);
-            pBottomTab.Location = new Point(11, 791);
-            pBottomTab.Margin = new Padding(3, 4, 3, 4);
+            pBottomTab.Location = new Point(10, 593);
             pBottomTab.Name = "pBottomTab";
-            pBottomTab.Size = new Size(745, 216);
+            pBottomTab.Size = new Size(652, 162);
             pBottomTab.TabIndex = 38;
             // 
             // txtSearchLeaveRequest
             // 
             txtSearchLeaveRequest.BorderStyle = BorderStyle.FixedSingle;
             txtSearchLeaveRequest.Font = new Font("Segoe UI", 18F);
-            txtSearchLeaveRequest.Location = new Point(415, 96);
+            txtSearchLeaveRequest.Location = new Point(363, 72);
+            txtSearchLeaveRequest.Margin = new Padding(3, 2, 3, 2);
             txtSearchLeaveRequest.MaxLength = 11;
             txtSearchLeaveRequest.Multiline = true;
             txtSearchLeaveRequest.Name = "txtSearchLeaveRequest";
             txtSearchLeaveRequest.PlaceholderText = "İzin Talebi Arama";
-            txtSearchLeaveRequest.Size = new Size(338, 49);
+            txtSearchLeaveRequest.Size = new Size(296, 37);
             txtSearchLeaveRequest.TabIndex = 29;
             txtSearchLeaveRequest.TextChanged += TxtSearchLeaveRequest_TextChanged;
             // 
             // LeaveRequestForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
-            ClientSize = new Size(790, 482);
+            ClientSize = new Size(691, 571);
             Controls.Add(pBottomTab);
             Controls.Add(lstLeaveRequest);
             Controls.Add(lblLeaveStatus);
@@ -298,6 +311,7 @@
             Controls.Add(lblQuotes);
             Controls.Add(lblLeaveRequestForm);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "LeaveRequestForm";
             Text = "İzin Talebi Formu";
             Load += LeaveRequestForm_Load;
