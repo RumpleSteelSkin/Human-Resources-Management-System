@@ -6,6 +6,19 @@ namespace HRMS.UI.Forms
 {
     public partial class PerformanceReviewForm : Form
     {
+        private void GetAllEmployeeAndPerformanceReview()
+        {
+            try
+            {
+                FP.UpdateListBox(lstVoterEmployee, "ID", "Name", FP.EmployeeService?.GetAll()!);
+                FP.UpdateListBox(puanlst, "ID", null!, FP.LeaveRequestService?.GetAll()!, puanlst_SelectedIndexChanged!);
+            }
+            catch (Exception ex)
+            {
+                FP.ShowError(ex);
+            }
+        }
+        PerformanceReview? selectedPerformanceReview;
         public PerformanceReviewForm()
         {
             InitializeComponent();
@@ -46,12 +59,52 @@ namespace HRMS.UI.Forms
 
         private void AramaTxt_TextChanged(object sender, EventArgs e)
         {
-            FP.UpdateListBox(calisanliste, "ID", null!, FP.EmployeeService?.GetAll()?.Where(emp => emp.FullName!.Contains(aramaTxt.Text,StringComparison.OrdinalIgnoreCase)).ToList()!);
+            FP.UpdateListBox(calisanliste, "ID", null!, FP.EmployeeService?.GetAll()?.Where(emp => emp.FullName!.Contains(aramaTxt.Text, StringComparison.OrdinalIgnoreCase)).ToList()!);
         }
 
         private void TxtVoterSearch_TextChanged(object sender, EventArgs e)
         {
             FP.UpdateListBox(lstVoterEmployee, "ID", null!, FP.EmployeeService?.GetAll()?.Where(emp => emp.FullName!.Contains(txtVoterSearch.Text, StringComparison.OrdinalIgnoreCase)).ToList()!);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (puanlst.SelectedIndex != -1 && puanlst.SelectedValue != null)
+                {
+                    if (selectedPerformanceReview != null)
+                    {
+                        DialogResult dr = MessageBox.Show($"{puanlst?.SelectedItem?.ToString()} puanı güncellemek istediğinize emin misiniz?", "Puan Güncelleme İşlemi", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dr == DialogResult.Yes)
+                        {
+                            selectedPerformanceReview.Score = (int)puan.Value;
+                            selectedPerformanceReview.Comments = yorumtxt.Text;
+                            MessageBox.Show("İşlem Başarılı!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            GetAllEmployeeAndPerformanceReview();
+                            FP.FormClear(this);
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Güncellemek istediğiniz bir izin talebi seçiniz...");
+                }
+            }
+            catch (Exception ex)
+            {
+                FP.ShowError(ex);
+            }
+        }
+
+        private void puanlisteara_TextChanged(object sender, EventArgs e)
+        {
+            FP.UpdateListBox(puanlst, "ID", null!, FP.PerformanceReviewService?.GetAll()?.Where(emp => emp.Employee!.FullName!.Contains(puanlisteara.Text, StringComparison.OrdinalIgnoreCase)).ToList()!, puanlst_SelectedIndexChanged!);
+        }
+
+        private void puanlst_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }
