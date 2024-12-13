@@ -267,6 +267,7 @@
             lstÇalışanlar.Size = new Size(234, 109);
             lstÇalışanlar.TabIndex = 24;
             lstÇalışanlar.SelectedIndexChanged += LstÇalışanlar_SelectedIndexChanged;
+            lstÇalışanlar.MouseDown += LstÇalışanlar_MouseDown;
             // 
             // lstEmployees
             // 

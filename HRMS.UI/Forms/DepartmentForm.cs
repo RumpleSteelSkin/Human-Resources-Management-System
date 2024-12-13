@@ -33,8 +33,8 @@ namespace HRMS.UI.Forms
                     ForeColor = Color.White
                 },
             ];
-            TSMIS[0].Click += ProductUpdate;
-            TSMIS[1].Click += ProductDelete;
+            TSMIS[0].Click += DepartmentUpdate;
+            TSMIS[1].Click += DepartmentDelete;
             cms.Items.AddRange(TSMIS);
             cms.ShowImageMargin = true;
             cms.ImageScalingSize = new Size(32, 32);
@@ -54,7 +54,7 @@ namespace HRMS.UI.Forms
         }
         #endregion
         #region EVENTS
-        private void ProductDelete(object? sender, EventArgs e)
+        private void DepartmentDelete(object? sender, EventArgs e)
         {
             try
             {
@@ -96,7 +96,7 @@ namespace HRMS.UI.Forms
                 FP.ShowError(ex);
             }
         }
-        private void ProductUpdate(object? sender, EventArgs e)
+        private void DepartmentUpdate(object? sender, EventArgs e)
         {
             try
             {

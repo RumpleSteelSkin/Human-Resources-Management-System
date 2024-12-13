@@ -64,9 +64,9 @@ namespace HRMS.UI.Forms
                     if (dialogForm.trainingProgramEmployees != null && dialogForm.trainingProgramEmployees.Count > 0)
                         trainingProgram.TrainingProgramEmployees = dialogForm.trainingProgramEmployees;
                     FP.TrainingProgramService?.Create(trainingProgram);
+                    MessageBox.Show("İşlem Başarılı!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    GetAllTrainingProgramsToList();
                 }
-                MessageBox.Show("İşlem Başarılı!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                GetAllTrainingProgramsToList();
             }
             catch (Exception ex)
             {
@@ -177,10 +177,10 @@ namespace HRMS.UI.Forms
                                 if (recordsToDelete != null)
                                     FP.ADBContext?.TrainingProgramEmployee.RemoveRange(recordsToDelete);
                                 FP.TrainingProgramService?.Update(selectedTrainingProgram);
+                                selectedTrainingProgram = null;
+                                MessageBox.Show("İşlem Başarılı!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                GetAllTrainingProgramsToList();
                             }
-                            selectedTrainingProgram = null;
-                            MessageBox.Show("İşlem Başarılı!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            GetAllTrainingProgramsToList();
                         }
                     }
 

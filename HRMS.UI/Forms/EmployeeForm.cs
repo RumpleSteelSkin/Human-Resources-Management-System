@@ -101,9 +101,11 @@ namespace HRMS.UI.Forms
                     cmbDepartment.SelectedValue = selectedemployee.DepartmentID;
                     cmbPosition.SelectedValue = selectedemployee.PositionID;
                     lstÇalışanlar.SelectedValue = selectedemployee.Subordinate;
+                    if (selectedemployee.Subordinate == null || selectedemployee.Subordinate.ToString() == "")
+                        lstÇalışanlar.SelectedIndex = -1;
                 }
             }
-            catch { }
+            catch { lstÇalışanlar.SelectedIndex = -1; }
         }
 
         private void TxtArama_TextChanged(object sender, EventArgs e)
@@ -196,6 +198,14 @@ namespace HRMS.UI.Forms
             catch (Exception ex)
             {
                 FP.ShowError(ex);
+            }
+        }
+
+        private void LstÇalışanlar_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                lstÇalışanlar.SelectedIndex = -1;
             }
         }
     }

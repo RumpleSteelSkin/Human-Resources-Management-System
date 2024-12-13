@@ -49,9 +49,10 @@
             // btnTrainingProgramDelete
             // 
             btnTrainingProgramDelete.BackColor = Color.FromArgb(255, 128, 128);
-            btnTrainingProgramDelete.Location = new Point(457, 391);
+            btnTrainingProgramDelete.Location = new Point(653, 547);
+            btnTrainingProgramDelete.Margin = new Padding(5, 4, 5, 4);
             btnTrainingProgramDelete.Name = "btnTrainingProgramDelete";
-            btnTrainingProgramDelete.Size = new Size(130, 55);
+            btnTrainingProgramDelete.Size = new Size(185, 77);
             btnTrainingProgramDelete.TabIndex = 0;
             btnTrainingProgramDelete.Text = "SEÇİLİ EĞİTİM PROGRAMINI SİL";
             btnTrainingProgramDelete.UseVisualStyleBackColor = false;
@@ -60,10 +61,11 @@
             // lstTrainingProgram
             // 
             lstTrainingProgram.FormattingEnabled = true;
-            lstTrainingProgram.ItemHeight = 15;
-            lstTrainingProgram.Location = new Point(302, 41);
+            lstTrainingProgram.ItemHeight = 21;
+            lstTrainingProgram.Location = new Point(432, 57);
+            lstTrainingProgram.Margin = new Padding(5, 4, 5, 4);
             lstTrainingProgram.Name = "lstTrainingProgram";
-            lstTrainingProgram.Size = new Size(285, 349);
+            lstTrainingProgram.Size = new Size(406, 487);
             lstTrainingProgram.TabIndex = 1;
             lstTrainingProgram.SelectedIndexChanged += LstTrainingProgram_SelectedIndexChanged;
             lstTrainingProgram.DoubleClick += LstTrainingProgram_DoubleClick;
@@ -71,9 +73,10 @@
             // btnTrainingProgramUpdate
             // 
             btnTrainingProgramUpdate.BackColor = Color.FromArgb(255, 224, 192);
-            btnTrainingProgramUpdate.Location = new Point(303, 391);
+            btnTrainingProgramUpdate.Location = new Point(433, 547);
+            btnTrainingProgramUpdate.Margin = new Padding(5, 4, 5, 4);
             btnTrainingProgramUpdate.Name = "btnTrainingProgramUpdate";
-            btnTrainingProgramUpdate.Size = new Size(130, 55);
+            btnTrainingProgramUpdate.Size = new Size(185, 77);
             btnTrainingProgramUpdate.TabIndex = 0;
             btnTrainingProgramUpdate.Text = "SEÇİLİ EĞİTİM PROGRAMINI GÜNCELLE";
             btnTrainingProgramUpdate.UseVisualStyleBackColor = false;
@@ -81,111 +84,124 @@
             // 
             // txtTrainingProgramSearch
             // 
-            txtTrainingProgramSearch.Location = new Point(302, 12);
+            txtTrainingProgramSearch.Location = new Point(432, 17);
+            txtTrainingProgramSearch.Margin = new Padding(5, 4, 5, 4);
             txtTrainingProgramSearch.Name = "txtTrainingProgramSearch";
             txtTrainingProgramSearch.PlaceholderText = "EĞİTİM PROGRAMI ARA";
-            txtTrainingProgramSearch.Size = new Size(285, 23);
+            txtTrainingProgramSearch.Size = new Size(406, 29);
             txtTrainingProgramSearch.TabIndex = 2;
             txtTrainingProgramSearch.TextChanged += TxtTrainingProgramSearch_TextChanged;
             // 
             // lblTrainingProgramName
             // 
             lblTrainingProgramName.AutoSize = true;
-            lblTrainingProgramName.Location = new Point(12, 15);
+            lblTrainingProgramName.Location = new Point(17, 21);
+            lblTrainingProgramName.Margin = new Padding(5, 0, 5, 0);
             lblTrainingProgramName.Name = "lblTrainingProgramName";
-            lblTrainingProgramName.Size = new Size(114, 15);
+            lblTrainingProgramName.Size = new Size(160, 21);
             lblTrainingProgramName.TabIndex = 3;
             lblTrainingProgramName.Text = "Eğitim Program Adı";
             // 
             // txtTrainingProgramName
             // 
-            txtTrainingProgramName.Location = new Point(12, 33);
+            txtTrainingProgramName.Location = new Point(17, 46);
+            txtTrainingProgramName.Margin = new Padding(5, 4, 5, 4);
             txtTrainingProgramName.Name = "txtTrainingProgramName";
-            txtTrainingProgramName.Size = new Size(241, 23);
+            txtTrainingProgramName.Size = new Size(342, 29);
             txtTrainingProgramName.TabIndex = 4;
             // 
             // lblTrainingProgramDescription
             // 
             lblTrainingProgramDescription.AutoSize = true;
-            lblTrainingProgramDescription.Location = new Point(12, 59);
+            lblTrainingProgramDescription.Location = new Point(17, 83);
+            lblTrainingProgramDescription.Margin = new Padding(5, 0, 5, 0);
             lblTrainingProgramDescription.Name = "lblTrainingProgramDescription";
-            lblTrainingProgramDescription.Size = new Size(154, 15);
+            lblTrainingProgramDescription.Size = new Size(217, 21);
             lblTrainingProgramDescription.TabIndex = 3;
             lblTrainingProgramDescription.Text = "Eğitim Program Açıklaması";
             // 
             // txtTrainingProgramDescription
             // 
-            txtTrainingProgramDescription.Location = new Point(12, 77);
+            txtTrainingProgramDescription.Location = new Point(17, 108);
+            txtTrainingProgramDescription.Margin = new Padding(5, 4, 5, 4);
             txtTrainingProgramDescription.Multiline = true;
             txtTrainingProgramDescription.Name = "txtTrainingProgramDescription";
-            txtTrainingProgramDescription.Size = new Size(241, 80);
+            txtTrainingProgramDescription.Size = new Size(342, 110);
             txtTrainingProgramDescription.TabIndex = 4;
             // 
             // dtTrainingProgramStartDate
             // 
-            dtTrainingProgramStartDate.Location = new Point(12, 178);
+            dtTrainingProgramStartDate.Location = new Point(17, 249);
+            dtTrainingProgramStartDate.Margin = new Padding(5, 4, 5, 4);
             dtTrainingProgramStartDate.Name = "dtTrainingProgramStartDate";
-            dtTrainingProgramStartDate.Size = new Size(241, 23);
+            dtTrainingProgramStartDate.Size = new Size(342, 29);
             dtTrainingProgramStartDate.TabIndex = 5;
             // 
             // lblTrainingProgramStartDate
             // 
             lblTrainingProgramStartDate.AutoSize = true;
-            lblTrainingProgramStartDate.Location = new Point(13, 160);
+            lblTrainingProgramStartDate.Location = new Point(18, 224);
+            lblTrainingProgramStartDate.Margin = new Padding(5, 0, 5, 0);
             lblTrainingProgramStartDate.Name = "lblTrainingProgramStartDate";
-            lblTrainingProgramStartDate.Size = new Size(180, 15);
+            lblTrainingProgramStartDate.Size = new Size(254, 21);
             lblTrainingProgramStartDate.TabIndex = 3;
             lblTrainingProgramStartDate.Text = "Eğitim Program Başlangıç Tarihi";
             // 
             // lblTrainingProgramEndDate
             // 
             lblTrainingProgramEndDate.AutoSize = true;
-            lblTrainingProgramEndDate.Location = new Point(12, 204);
+            lblTrainingProgramEndDate.Location = new Point(17, 286);
+            lblTrainingProgramEndDate.Margin = new Padding(5, 0, 5, 0);
             lblTrainingProgramEndDate.Name = "lblTrainingProgramEndDate";
-            lblTrainingProgramEndDate.Size = new Size(153, 15);
+            lblTrainingProgramEndDate.Size = new Size(214, 21);
             lblTrainingProgramEndDate.TabIndex = 3;
             lblTrainingProgramEndDate.Text = "Eğitim Program Bitiş Tarihi";
             // 
             // dtTrainingProgramEndDate
             // 
-            dtTrainingProgramEndDate.Location = new Point(12, 222);
+            dtTrainingProgramEndDate.Location = new Point(17, 311);
+            dtTrainingProgramEndDate.Margin = new Padding(5, 4, 5, 4);
             dtTrainingProgramEndDate.Name = "dtTrainingProgramEndDate";
-            dtTrainingProgramEndDate.Size = new Size(241, 23);
+            dtTrainingProgramEndDate.Size = new Size(342, 29);
             dtTrainingProgramEndDate.TabIndex = 5;
             // 
             // lblTrainer
             // 
             lblTrainer.AutoSize = true;
-            lblTrainer.Location = new Point(12, 248);
+            lblTrainer.Location = new Point(17, 347);
+            lblTrainer.Margin = new Padding(5, 0, 5, 0);
             lblTrainer.Name = "lblTrainer";
-            lblTrainer.Size = new Size(53, 15);
+            lblTrainer.Size = new Size(74, 21);
             lblTrainer.TabIndex = 3;
             lblTrainer.Text = "Eğitmen";
             // 
             // lstEmployees
             // 
             lstEmployees.FormattingEnabled = true;
-            lstEmployees.ItemHeight = 15;
-            lstEmployees.Location = new Point(12, 298);
+            lstEmployees.ItemHeight = 21;
+            lstEmployees.Location = new Point(17, 417);
+            lstEmployees.Margin = new Padding(5, 4, 5, 4);
             lstEmployees.Name = "lstEmployees";
-            lstEmployees.Size = new Size(241, 109);
+            lstEmployees.Size = new Size(342, 151);
             lstEmployees.TabIndex = 1;
             // 
             // txtTrainerSearch
             // 
-            txtTrainerSearch.Location = new Point(12, 269);
+            txtTrainerSearch.Location = new Point(17, 377);
+            txtTrainerSearch.Margin = new Padding(5, 4, 5, 4);
             txtTrainerSearch.Name = "txtTrainerSearch";
             txtTrainerSearch.PlaceholderText = "EĞİTİMCİ ARA";
-            txtTrainerSearch.Size = new Size(241, 23);
+            txtTrainerSearch.Size = new Size(342, 29);
             txtTrainerSearch.TabIndex = 2;
             txtTrainerSearch.TextChanged += TxtTrainerSearch_TextChanged;
             // 
             // btnTrainingProgramAdd
             // 
             btnTrainingProgramAdd.BackColor = Color.FromArgb(192, 192, 255);
-            btnTrainingProgramAdd.Location = new Point(12, 413);
+            btnTrainingProgramAdd.Location = new Point(17, 578);
+            btnTrainingProgramAdd.Margin = new Padding(5, 4, 5, 4);
             btnTrainingProgramAdd.Name = "btnTrainingProgramAdd";
-            btnTrainingProgramAdd.Size = new Size(241, 33);
+            btnTrainingProgramAdd.Size = new Size(345, 46);
             btnTrainingProgramAdd.TabIndex = 6;
             btnTrainingProgramAdd.Text = "Eğitim Programını Ekle";
             btnTrainingProgramAdd.UseVisualStyleBackColor = false;
@@ -193,10 +209,10 @@
             // 
             // TrainingProgramForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(192, 255, 192);
-            ClientSize = new Size(598, 450);
+            ClientSize = new Size(855, 630);
             Controls.Add(btnTrainingProgramAdd);
             Controls.Add(dtTrainingProgramEndDate);
             Controls.Add(dtTrainingProgramStartDate);
@@ -213,7 +229,8 @@
             Controls.Add(lstTrainingProgram);
             Controls.Add(btnTrainingProgramUpdate);
             Controls.Add(btnTrainingProgramDelete);
-            Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            Margin = new Padding(5, 4, 5, 4);
             Name = "TrainingProgramForm";
             Text = "EĞİTİM PROGRAM FORMU";
             Load += TrainingProgramForm_Load;

@@ -65,11 +65,20 @@ namespace HRMS.UI.Forms
                         DialogResult dr = MessageBox.Show($"{lstPositionList?.SelectedItem?.ToString()} isimli pozisyonu silmek istediğinize emin misiniz?", "Pozisyon Silme İşlemi", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (dr == DialogResult.Yes)
                         {
-                            FP.PositionService?.Delete(Guid.TryParse(lstPositionList?.SelectedValue?.ToString(), out var positionID) ? positionID : throw new Exception("Geçerli bir pozisyon seçiniz."));
-                            selectedPosition = null;
-                            MessageBox.Show("İşlem Başarılı!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            GetAllPositionsToList();
-                            FP.FormClear(this);
+                            Guid positionID = Guid.TryParse(lstPositionList?.SelectedValue?.ToString(), out var posID) ? posID : throw new Exception("Geçerli bir pozisyon seçiniz.");
+                            int positionIDInEmployee = FP.EmployeeService!.GetAll()!.Where(x => x.PositionID == positionID).ToList().Count;
+                            if (positionIDInEmployee == 0)
+                            {
+                                FP.PositionService?.Delete(positionID);
+                                selectedPosition = null;
+                                MessageBox.Show("İşlem Başarılı!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                GetAllPositionsToList();
+                                FP.FormClear(this);
+                            }
+                            else
+                            {
+                                throw new Exception("Bu pozisyona bağlı çalışanlar olduğu için silme işlemi yapılamaz.");
+                            }
                         }
                     }
                     else
@@ -119,8 +128,6 @@ namespace HRMS.UI.Forms
                 FP.ShowError(ex);
             }
         }
-
-
         private void ChkPositionActiveOrPassive_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -176,15 +183,11 @@ namespace HRMS.UI.Forms
                 FP.ShowError(ex);
             }
         }
-
-        #endregion
-
         private void PositionForm_Load_1(object sender, EventArgs e)
         {
             AddContextMenuStrip();
             GetAllPositionsToList();
         }
-
         private void TxtSearch_TextChanged_1(object sender, EventArgs e)
         {
             try
@@ -196,5 +199,6 @@ namespace HRMS.UI.Forms
                 FP.ShowError(ex);
             }
         }
+        #endregion
     }
 }

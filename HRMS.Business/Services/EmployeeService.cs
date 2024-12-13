@@ -26,6 +26,7 @@ namespace HRMS.Business.Services
             if (emp != null)
             {
                 emp.IsActive = false;
+                emp.TerminationDate = DateTime.Now;
                 _repository.Update(emp);
             }
         }

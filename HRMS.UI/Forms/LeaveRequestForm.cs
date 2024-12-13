@@ -11,9 +11,10 @@ namespace HRMS.UI.Forms
             InitializeComponent();
             dtEndDate.ValueChanged += (sender, e) =>
             {
-                if (dtEndDate.Value < dtStartDate.Value)
+                if (dtEndDate.Value.AddHours(1) < dtStartDate.Value)
                 {
                     MessageBox.Show("Bitiş tarihi, başlangıç tarihinden önce olamaz!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    dtEndDate.Value = dtStartDate.Value;
                 }
             };
         }
@@ -21,6 +22,8 @@ namespace HRMS.UI.Forms
         LeaveRequest? selectedLeaveRequest;
         #endregion
         #region METHODS
+
+    
         private void GetAllEmployeeAndLeaveRequestToList()
         {
             try
@@ -49,12 +52,14 @@ namespace HRMS.UI.Forms
                 lblOther.Visible = true;
                 txtOther.Visible = true;
                 pBottomTab.Location = new Point(10, 593);
+                this.Size = new Size(this.Size.Width, 794);
             }
             else
             {
                 txtOther.Visible = false;
                 lblOther.Visible = false;
                 pBottomTab.Location = new Point(10, lblOther.Location.Y);
+                this.Size = new Size(this.Size.Width, 610);
             }
         }
         private void TxtSearch_TextChanged(object sender, EventArgs e)
@@ -169,13 +174,13 @@ namespace HRMS.UI.Forms
                     }
                     else
                     {
-                        cmbLeaveType.SelectedIndex = 7;
                         txtOther.Text = selectedLeaveRequest.LeaveType;
+                        cmbLeaveType.SelectedIndex = 7;
                     }
                     lstEmployees.SelectedValue = selectedLeaveRequest.EmployeeID;
                     cmbLeaveStatus.Text = selectedLeaveRequest.LeaveStatus;
-                    dtStartDate.Value = selectedLeaveRequest.StartDate;
-                    dtEndDate.Value = selectedLeaveRequest.EndDate;
+                    dtStartDate.Value = Convert.ToDateTime(selectedLeaveRequest.StartDate.AddHours(-1));
+                    dtEndDate.Value = Convert.ToDateTime(selectedLeaveRequest.EndDate.AddHours(2));
                 }
             }
             catch (Exception ex)

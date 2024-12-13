@@ -56,39 +56,39 @@ namespace HRMS.UI.Forms
         //    // Bilgi Teknolojileri
         //    "Yazılım Geliştirici", "Sistem Yöneticisi", "Ağ Uzmanı", "Veri Analisti", "Bilgi Güvenliği Uzmanı",
         //    "IT Destek Uzmanı", "Web Geliştirici", "Bulut Mühendisi", "Yapay Zeka Uzmanı", "DevOps Mühendisi",
-    
+
         //    // İnsan Kaynakları
         //    "İşe Alım Uzmanı", "İK Yöneticisi", "Eğitim ve Gelişim Uzmanı", "Performans Yönetimi Uzmanı", "Bordro Uzmanı",
         //    "İK Destek Asistanı", "Organizasyonel Gelişim Uzmanı", "Yetenek Yönetimi Uzmanı", "Çalışan İlişkileri Uzmanı",
-    
+
         //    // Muhasebe
         //    "Muhasebe Uzmanı", "Mali İşler Müdürü", "Finansal Analist", "Vergi Uzmanı", "Defter Tutma Uzmanı",
         //    "Muhasebe Denetçisi", "Nakit Akış Uzmanı", "Bütçe Planlama Uzmanı", "Finans Müdürü",
-    
+
         //    // Pazarlama
         //    "Dijital Pazarlama Uzmanı", "Marka Yöneticisi", "Reklam Uzmanı", "Pazarlama Stratejisti", "Pazarlama Analisti",
         //    "Sosyal Medya Uzmanı", "Müşteri Deneyimi Uzmanı", "E-Ticaret Uzmanı", "Pazarlama Müdürü",
-    
+
         //    // Satış
         //    "Satış Temsilcisi", "Bölge Satış Yöneticisi", "Müşteri Hizmetleri Uzmanı", "Satış Analisti", "Satış Müdürü",
         //    "Satış Destek Uzmanı", "Satış Operasyon Uzmanı", "İç Satış Temsilcisi", "Satış Danışmanı",
-    
+
         //    // Lojistik
         //    "Lojistik Uzmanı", "Tedarik Zinciri Uzmanı", "Depo Sorumlusu", "Nakliye Koordinatörü", "Lojistik Yöneticisi",
         //    "Operasyon Planlama Uzmanı", "Stok Yönetimi Uzmanı", "Lojistik Destek Uzmanı", "Sevkiyat Sorumlusu",
-    
+
         //    // Üretim
         //    "Üretim Operatörü", "Üretim Planlama Uzmanı", "Üretim Müdürü", "Mühendislik Yöneticisi",
         //    "Makine Operatörü", "Üretim Süreç Uzmanı", "Üretim Destek Uzmanı", "Teknik Çizim Uzmanı",
-    
+
         //    // Ar-Ge
         //    "Araştırma Uzmanı", "Geliştirme Mühendisi", "Ürün Tasarımcısı", "Ar-Ge Yöneticisi", "Patent Uzmanı",
         //    "Proje Yöneticisi", "Yenilik Uzmanı", "Teknoloji Analisti", "Ar-Ge Teknikeri",
-    
+
         //    // Destek Hizmetleri
         //    "Ofis Asistanı", "Müşteri Destek Uzmanı", "Çağrı Merkezi Uzmanı", "Sekreter", "Destek Hizmetleri Yöneticisi",
         //    "Faturalama Uzmanı", "Posta ve Kargo Sorumlusu", "Telefon Operatörü", "Halkla İlişkiler Uzmanı",
-    
+
         //    // Kalite Kontrol
         //    "Kalite Kontrol Uzmanı", "Süreç Denetçisi", "Kalite Güvence Uzmanı", "Test Mühendisi", "Kalite Kontrol Müdürü",
         //    "Ürün Test Uzmanı", "Kalite Sistem Uzmanı", "Üretim Denetçisi", "Kalite Ölçüm Uzmanı"
@@ -485,11 +485,12 @@ namespace HRMS.UI.Forms
             {
                 Dock = DockStyle.Fill,
                 AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill,
-                BackgroundColor = Color.White
+                BackgroundColor = Color.White,
+                DataSource = null
             };
             lblLeaveRequestTypeGraph.Controls.Add(dgwLR);
             var LeaveRequest = FP.LeaveRequestService?.GetAll()?
-                .Where(x => x.StartDate <= DateTime.Now && x.EndDate >= DateTime.Now)
+                .Where(x => x.StartDate <= DateTime.Now && x.EndDate >= DateTime.Now && (x.LeaveStatus == "Onaylandı " || x.LeaveStatus == "Onaylandı"))
                 .Join(FP.EmployeeService?.GetAll()!, ex => ex.EmployeeID, d => d.ID, (ex, d) => new { ex, d.FullName })
                 .Select(x => new { x.FullName, x.ex.StartDate, x.ex.EndDate }).ToList();
             dgwLR.DataSource = LeaveRequest;
@@ -642,7 +643,7 @@ namespace HRMS.UI.Forms
 
                     var image = worksheet.Drawings.AddPicture($"Chart{i}", chartImage);
 
-                    image.SetPosition(imageStartRow, 0, (i * 7)-7, 0);
+                    image.SetPosition(imageStartRow, 0, (i * 7) - 7, 0);
                 }
 
                 worksheet.Cells[24, 1].Value = "İZİNDE OLAN ÇALIŞANLAR";
