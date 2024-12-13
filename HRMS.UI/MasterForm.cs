@@ -12,18 +12,26 @@ namespace HRMS.UI
 
         private void MasterForm_Load(object sender, EventArgs e)
         {
+            foreach (Control control in this.Controls)
+            {
+                if (!(control is not MdiClient client))
+                {
+                    client.BackColor = Color.FromArgb(153, 180, 250);
+                    break;
+                }
+            }
             ToolStripMenuItem masterMenu = new("ÝÞLEMLER");
             ToolStripMenuItem[] childs = [
                 new("DEPARTMAN ÝÞLEMLERÝ", null, new EventHandler(Department_Click!)),
+                new("POZÝSYON ÝÞLEMLERÝ",null,new EventHandler(Position_Click!)),
                 new("ÇALIÞAN ÝÞLEMLERÝ", null, new EventHandler(Employee_Click!)),
                 new("ÝZÝN TALEP ÝÞLEMLERÝ",null, new EventHandler(LeaveRequest_Click!)),
-                new("PERFORMANS DEÐERLENDÝRME ÝÞLEMLERÝ",null,new EventHandler(PerformanceReview_Click!)),
-                new("POZÝSYON ÝÞLEMLERÝ",null,new EventHandler(Position_Click!)),
-                new("EÐÝTÝM PROGRAMI ÝÞLEMLERÝ",null,new EventHandler(TrainingProgram_Click!))
+                new("EÐÝTÝM PROGRAMI ÝÞLEMLERÝ",null,new EventHandler(TrainingProgram_Click!)),
+                new("PERFORMANS DEÐERLENDÝRME ÝÞLEMLERÝ",null,new EventHandler(PerformanceReview_Click!))
             ];
             masterMenu.DropDownItems.AddRange(childs);
             ToolStripMenuItem reportsMenu = new("DÝÐER");
-            ToolStripMenuItem testMenu = new("RAPORLAR", null, new EventHandler(Reports_Click!)); 
+            ToolStripMenuItem testMenu = new("RAPORLAR", null, new EventHandler(Reports_Click!));
             reportsMenu.DropDownItems.Add(testMenu);
             MenuStrip ms = new()
             {

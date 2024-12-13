@@ -69,6 +69,10 @@ namespace HRMS.UI.Tools
                     mbox.Clear();
                 else if (item is CheckBox cbox)
                     cbox.Checked = false;
+                else if (item is ComboBox combo)
+                    combo.Text = "";
+                else if (item is DateTimePicker dt)
+                    dt.Value = DateTime.Now;
                 else if (item.Controls.Count > 0)
                     FormClear(item);
             }

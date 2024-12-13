@@ -9,7 +9,7 @@ namespace HRMS.Business.Services
 {
     public class EmployeeService(EmployeeRepository eRepo) : IManager<Employee>
     {
-        private readonly EmployeeRepository _repository=eRepo;
+        private readonly EmployeeRepository _repository = eRepo;
         public void Create(Employee entity)
         {
             if (IfEntityExists(x => x.FirstName == entity.FirstName && x.LastName == entity.LastName && x.DateOfBirth == entity.DateOfBirth))
@@ -22,15 +22,17 @@ namespace HRMS.Business.Services
 
         public void Delete(Guid id)
         {
-            //var emp = _repository.GetById(id);
-            //if (emp != null && emp.IsActive)
-            //    throw new Exception("Aktif olan bir çalışan silinemez.");
-            _repository.DeleteById(id);
+            var emp = _repository.GetById(id);
+            if (emp != null)
+            {
+                emp.IsActive = false;
+                _repository.Update(emp);
+            }
         }
 
         public IEnumerable<Employee>? GetAll()
         {
-            return _repository.GetAll() ?? throw new Exception("çalışan kaydı  bulunmamaktadır.");
+            return _repository.GetAll()?.Where(x => x.IsActive == true).ToList()! ?? throw new Exception("çalışan kaydı  bulunmamaktadır.");
         }
 
         public Employee? GetById(Guid id)
@@ -49,7 +51,7 @@ namespace HRMS.Business.Services
             if (!result.IsValid)
                 throw new Exception(string.Join(",", result.Errors));
             if (entity != null)
-                _repository.Update(entity);     
+                _repository.Update(entity);
         }
     }
 }

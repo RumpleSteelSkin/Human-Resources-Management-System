@@ -10,7 +10,6 @@ namespace HRMS.UI.Forms
     {
         private readonly EmployeeService _employeeService;
         private readonly EmployeeRepository _employeeRepository;
-
         public EmployeeForm()
         {
             InitializeComponent();
@@ -20,103 +19,114 @@ namespace HRMS.UI.Forms
             _employeeService = new EmployeeService(_employeeRepository);
         }
 
-        Employee? selectedemployee;
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnGetAll_Click(object sender, EventArgs e)
-        {
-            var context = new ADBContext();
-            var employees = context.Employees.ToList();
-
-
-        }
+        private Employee? selectedemployee;
 
         private void EmployeeForm_Load(object sender, EventArgs e)
         {
-            FP.UpdateListBox(lstÇalışanlar, "ID", null!, FP.EmployeeService?.GetAll()!);
-            FP.UpdateComboBox(cmbDepartment, "ID", "Name", FP.DepartmentService?.GetAll()!);
-            FP.UpdateComboBox(cmbPosition, "ID", "Name", FP.PositionService?.GetAll()!);
-            FP.UpdateListBox(lstEmployees, "ID", null!, FP.EmployeeService?.GetAll()!);
-        }
-
-        private void btnEkle_Click(object sender, EventArgs e)
-        {
             try
             {
-
-                Employee employee = new()
-                {
-                    FirstName = txtName.Text,
-                    LastName = txtSurname.Text,
-                    Gender = cmbGender.Text,
-                    Salary = Convert.ToDecimal(txtSalary.Text),
-                    DateOfBirth = dtpDateOfBirth.Value,
-                    HireDate = dtpHireDate.Value,
-                    DepartmentID = Guid.TryParse(cmbDepartment.SelectedValue?.ToString(), out var employeeId) ? employeeId : throw new Exception("Geçerli bir departman seçiniz."),
-                    PositionID = Guid.TryParse(cmbPosition.SelectedValue?.ToString(), out var posId) ? posId : throw new Exception("Geçerli bir pozisyon seçiniz."),
-                    Subordinate = Guid.TryParse(lstÇalışanlar.SelectedValue?.ToString(), out var subId) ? subId : throw new Exception("Geçerli bir ast seçiniz."),
-                };
-
-
-
-                _employeeService.Create(employee);
-                FP.FormClear(this);
-                MessageBox.Show("kayıt basarılı");
-
-
+                FP.UpdateListBox(lstÇalışanlar, "ID", null!, FP.EmployeeService?.GetAll()!);
+                FP.UpdateComboBox(cmbDepartment, "ID", "Name", FP.DepartmentService?.GetAll()!);
+                FP.UpdateComboBox(cmbPosition, "ID", "Name", FP.PositionService?.GetAll()!);
+                FP.UpdateListBox(lstEmployees, "ID", null!, FP.EmployeeService?.GetAll()!, LstEmployees_SelectedIndexChanged!);
             }
             catch (Exception ex)
             {
-
-                MessageBox.Show(ex.Message);
+                FP.ShowError(ex);
+            }
+        }
+        private void BtnEkle_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult dr = MessageBox.Show($"{lstEmployees.SelectedItem} isimli çalışanı eklemek istediğinize emin misiniz?", "Çalışan Ekleme İşlemi", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dr == DialogResult.Yes)
+                {
+                    Employee employee = new()
+                    {
+                        FirstName = txtName.Text,
+                        LastName = txtSurname.Text,
+                        Gender = cmbGender.Text,
+                        Salary = Convert.ToDecimal(txtSalary.Text),
+                        DateOfBirth = dtpDateOfBirth.Value,
+                        HireDate = dtpHireDate.Value,
+                        DepartmentID = Guid.TryParse(cmbDepartment.SelectedValue?.ToString(), out var employeeId) ? employeeId : throw new Exception("Geçerli bir departman seçiniz."),
+                        PositionID = Guid.TryParse(cmbPosition.SelectedValue?.ToString(), out var posId) ? posId : throw new Exception("Geçerli bir pozisyon seçiniz."),
+                        Subordinate = Guid.TryParse(lstÇalışanlar.SelectedValue?.ToString(), out var subId) ? subId : null
+                    };
+                    _employeeService.Create(employee);
+                    FP.FormClear(this);
+                    MessageBox.Show("İşlem Başarılı!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                FP.ShowError(ex);
             }
         }
 
-        private void txtSubordinate_TextChanged(object sender, EventArgs e)
+        private void TxtSubordinate_TextChanged(object sender, EventArgs e)
         {
             FP.UpdateListBox(lstÇalışanlar, "ID", null!, FP.EmployeeService?.GetAll()?.Where(x => x.FullName!.Contains(txtSubordinate.Text, StringComparison.OrdinalIgnoreCase)).ToList()!);
         }
 
-        private void lstÇalışanlar_SelectedIndexChanged(object sender, EventArgs e)
+        private void LstÇalışanlar_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void cmbDepartment_SelectedIndexChanged(object sender, EventArgs e)
+        private void CmbDepartment_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void cmbGender_SelectedIndexChanged(object sender, EventArgs e)
+        private void CmbGender_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void lstEmployees_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtArama_TextChanged(object sender, EventArgs e)
-        {
-            FP.UpdateListBox(lstEmployees, "ID", null!, FP.EmployeeService?.GetAll()?.Where(x => x.FullName!.Contains(txtArama.Text, StringComparison.OrdinalIgnoreCase)).ToList()!);
-        }
-
-        private void btnCıkar_Click(object sender, EventArgs e)
+        private void LstEmployees_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
                 if (lstEmployees.SelectedIndex != -1 && lstEmployees.SelectedItem != null)
                 {
-                    DialogResult dr = MessageBox.Show($"{lstEmployees.SelectedItem.ToString()} isimli çalışanı silmek istediğinize emin misiniz?", "çalışan silme İşlemi", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    selectedemployee = (Employee)lstEmployees.SelectedItem;
+                    txtName.Text = selectedemployee.FirstName;
+                    txtSurname.Text = selectedemployee.LastName;
+                    dtpDateOfBirth.Value = selectedemployee.DateOfBirth;
+                    dtpHireDate.Value = selectedemployee.HireDate;
+                    txtSalary.Text = selectedemployee.Salary.ToString();
+                    cmbGender.Text = selectedemployee.Gender;
+                    cmbDepartment.SelectedValue = selectedemployee.DepartmentID;
+                    cmbPosition.SelectedValue = selectedemployee.PositionID;
+                    lstÇalışanlar.SelectedValue = selectedemployee.Subordinate;
+                }
+            }
+            catch { }
+        }
+
+        private void TxtArama_TextChanged(object sender, EventArgs e)
+        {
+            FP.UpdateListBox(lstEmployees, "ID", null!, FP.EmployeeService?.GetAll()?.Where(x => x.FullName!.Contains(txtArama.Text, StringComparison.OrdinalIgnoreCase)).ToList()!);
+        }
+
+        private void BtnCıkar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (lstEmployees.SelectedIndex != -1 && lstEmployees.SelectedItem != null)
+                {
+                    DialogResult dr = MessageBox.Show($"{lstEmployees.SelectedItem} isimli çalışanı silmek istediğinize emin misiniz?", "Çalışan silme İşlemi", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dr == DialogResult.Yes)
                     {
-                        FP.EmployeeService?.Delete(Guid.TryParse(lstEmployees.SelectedValue?.ToString(), out var empID) ? empID : throw new Exception("Geçerli bir çalışan seçiniz."));
-                        MessageBox.Show("İşlem Başarılı!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (selectedemployee != null)
+                        {
+                            FP.EmployeeService?.Delete(selectedemployee.ID);
+                            MessageBox.Show("İşlem Başarılı!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            GetAllEmployeeToList();
+                            FP.FormClear(this);
+                        }
                     }
                 }
 
@@ -129,7 +139,7 @@ namespace HRMS.UI.Forms
             }
         }
 
-        private void btnUpdate_Click(object sender, EventArgs e)
+        private void BtnUpdate_Click(object sender, EventArgs e)
         {
             try
             {
@@ -137,14 +147,26 @@ namespace HRMS.UI.Forms
                 {
                     if (lstEmployees.SelectedValue != null)
                     {
-                        DialogResult dr = MessageBox.Show($"{lstEmployees?.SelectedItem?.ToString()} isimli çalışanı güncellemek istediğinize emin misiniz?", "çalışan güncelleme  İşlemi", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        DialogResult dr = MessageBox.Show($"{lstEmployees?.SelectedItem?.ToString()} isimli çalışanı güncellemek istediğinize emin misiniz?", "Çalışan güncelleme  İşlemi", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (dr == DialogResult.Yes)
                         {
-                            FP.EmployeeService?.Delete(Guid.TryParse(lstEmployees?.SelectedValue?.ToString(), out var empID) ? empID : throw new Exception("Geçerli bir çalışan seçiniz."));
-                            selectedemployee = null;
-                            MessageBox.Show("İşlem Başarılı!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            GetAllEmployeeToList();
-                            FP.FormClear(this);
+                            if (selectedemployee != null)
+                            {
+                                selectedemployee.FirstName = txtName.Text;
+                                selectedemployee.LastName = txtSurname.Text;
+                                selectedemployee.DateOfBirth = dtpDateOfBirth.Value;
+                                selectedemployee.HireDate = dtpHireDate.Value;
+                                selectedemployee.Salary = Convert.ToDecimal(txtSalary.Text);
+                                selectedemployee.Gender = cmbGender.Text;
+                                selectedemployee.DepartmentID = Guid.TryParse(cmbDepartment.SelectedValue?.ToString(), out var employeeId) ? employeeId : throw new Exception("Geçerli bir departman seçiniz.");
+                                selectedemployee.PositionID = Guid.TryParse(cmbPosition.SelectedValue?.ToString(), out var posId) ? posId : throw new Exception("Geçerli bir pozisyon seçiniz.");
+                                selectedemployee.Subordinate = Guid.TryParse(lstÇalışanlar.SelectedValue?.ToString(), out var subId) ? subId : null;
+                                FP.EmployeeService?.Update(selectedemployee);
+                                MessageBox.Show("İşlem Başarılı!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                selectedemployee = null;
+                                GetAllEmployeeToList();
+                                FP.FormClear(this);
+                            }
                         }
                     }
                     else
@@ -160,7 +182,7 @@ namespace HRMS.UI.Forms
             catch (Exception ex)
             {
                 FP.ShowError(ex);
-                
+
             }
         }
 
@@ -168,7 +190,8 @@ namespace HRMS.UI.Forms
         {
             try
             {
-                FP.UpdateListBox(lstEmployees, "ID", "Name", FP.EmployeeService?.GetAll()!, lstEmployees_SelectedIndexChanged!);
+                FP.UpdateListBox(lstÇalışanlar, "ID", null!, FP.EmployeeService?.GetAll()!);
+                FP.UpdateListBox(lstEmployees, "ID", "Name", FP.EmployeeService?.GetAll()!, LstEmployees_SelectedIndexChanged!);
             }
             catch (Exception ex)
             {

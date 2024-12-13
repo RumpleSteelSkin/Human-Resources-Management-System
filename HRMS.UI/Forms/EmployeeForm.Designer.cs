@@ -57,218 +57,244 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(0, 37);
+            label1.Location = new Point(0, 42);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(39, 20);
+            label1.Size = new Size(46, 21);
             label1.TabIndex = 0;
             label1.Text = "İsim:";
             // 
             // txtName
             // 
-            txtName.Location = new Point(107, 30);
+            txtName.Location = new Point(134, 31);
+            txtName.Margin = new Padding(4, 3, 4, 3);
             txtName.Name = "txtName";
-            txtName.Size = new Size(151, 27);
+            txtName.Size = new Size(234, 29);
             txtName.TabIndex = 1;
             // 
             // txtSurname
             // 
-            txtSurname.Location = new Point(107, 86);
+            txtSurname.Location = new Point(134, 90);
+            txtSurname.Margin = new Padding(4, 3, 4, 3);
             txtSurname.Name = "txtSurname";
-            txtSurname.Size = new Size(151, 27);
+            txtSurname.Size = new Size(234, 29);
             txtSurname.TabIndex = 3;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(0, 86);
+            label2.Location = new Point(0, 95);
+            label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(63, 20);
+            label2.Size = new Size(74, 21);
             label2.TabIndex = 2;
             label2.Text = "Soyisim:";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(0, 238);
+            label3.Location = new Point(0, 249);
+            label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
-            label3.Size = new Size(87, 20);
+            label3.Size = new Size(100, 21);
             label3.TabIndex = 4;
             label3.Text = "Departman:";
-            label3.Click += label3_Click;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(0, 293);
+            label4.Location = new Point(0, 308);
+            label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
-            label4.Size = new Size(69, 20);
+            label4.Size = new Size(83, 21);
             label4.TabIndex = 5;
             label4.Text = "Pozisyon:";
             // 
             // cmbPosition
             // 
             cmbPosition.FormattingEnabled = true;
-            cmbPosition.Location = new Point(107, 293);
+            cmbPosition.Location = new Point(134, 308);
+            cmbPosition.Margin = new Padding(4, 3, 4, 3);
             cmbPosition.Name = "cmbPosition";
-            cmbPosition.Size = new Size(151, 28);
+            cmbPosition.Size = new Size(234, 29);
             cmbPosition.TabIndex = 6;
             // 
             // cmbDepartment
             // 
             cmbDepartment.FormattingEnabled = true;
-            cmbDepartment.Location = new Point(107, 238);
+            cmbDepartment.Location = new Point(134, 249);
+            cmbDepartment.Margin = new Padding(4, 3, 4, 3);
             cmbDepartment.Name = "cmbDepartment";
-            cmbDepartment.Size = new Size(151, 28);
+            cmbDepartment.Size = new Size(234, 29);
             cmbDepartment.TabIndex = 7;
-            cmbDepartment.SelectedIndexChanged += cmbDepartment_SelectedIndexChanged;
+            cmbDepartment.SelectedIndexChanged += CmbDepartment_SelectedIndexChanged;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(0, 189);
+            label5.Location = new Point(0, 195);
+            label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
-            label5.Size = new Size(63, 20);
+            label5.Size = new Size(75, 21);
             label5.TabIndex = 8;
             label5.Text = "Cinsiyet:";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(282, 30);
+            label6.Location = new Point(390, 31);
+            label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
-            label6.Size = new Size(101, 20);
+            label6.Size = new Size(118, 21);
             label6.TabIndex = 9;
             label6.Text = "Doğum Tarihi:";
             // 
             // cmbGender
             // 
             cmbGender.FormattingEnabled = true;
-            cmbGender.Items.AddRange(new object[] { "Erkek", "Kadın" });
-            cmbGender.Location = new Point(107, 181);
+            cmbGender.Items.AddRange(new object[] { "KADIN", "ERKEK" });
+            cmbGender.Location = new Point(134, 190);
+            cmbGender.Margin = new Padding(4, 3, 4, 3);
             cmbGender.Name = "cmbGender";
-            cmbGender.Size = new Size(151, 28);
+            cmbGender.Size = new Size(234, 29);
             cmbGender.TabIndex = 10;
-            cmbGender.SelectedIndexChanged += cmbGender_SelectedIndexChanged;
+            cmbGender.SelectedIndexChanged += CmbGender_SelectedIndexChanged;
             // 
             // dtpDateOfBirth
             // 
-            dtpDateOfBirth.Location = new Point(416, 25);
+            dtpDateOfBirth.Location = new Point(546, 27);
+            dtpDateOfBirth.Margin = new Padding(4, 3, 4, 3);
             dtpDateOfBirth.Name = "dtpDateOfBirth";
-            dtpDateOfBirth.Size = new Size(231, 27);
+            dtpDateOfBirth.Size = new Size(261, 29);
             dtpDateOfBirth.TabIndex = 11;
             // 
             // dtpHireDate
             // 
-            dtpHireDate.Location = new Point(416, 79);
+            dtpHireDate.Location = new Point(546, 83);
+            dtpHireDate.Margin = new Padding(4, 3, 4, 3);
             dtpHireDate.Name = "dtpHireDate";
-            dtpHireDate.Size = new Size(231, 27);
+            dtpHireDate.Size = new Size(261, 29);
             dtpHireDate.TabIndex = 12;
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(281, 84);
+            label7.Location = new Point(390, 90);
+            label7.Margin = new Padding(4, 0, 4, 0);
             label7.Name = "label7";
-            label7.Size = new Size(129, 20);
+            label7.Size = new Size(150, 21);
             label7.TabIndex = 13;
             label7.Text = "İşe Başlama Tarihi:";
             // 
             // btnEkle
             // 
-            btnEkle.Location = new Point(312, 212);
+            btnEkle.Location = new Point(390, 444);
+            btnEkle.Margin = new Padding(4, 3, 4, 3);
             btnEkle.Name = "btnEkle";
-            btnEkle.Size = new Size(157, 54);
+            btnEkle.Size = new Size(134, 56);
             btnEkle.TabIndex = 16;
             btnEkle.Text = "EKLE";
             btnEkle.UseVisualStyleBackColor = true;
-            btnEkle.Click += btnEkle_Click;
+            btnEkle.Click += BtnEkle_Click;
             // 
             // btnCıkar
             // 
-            btnCıkar.Location = new Point(490, 212);
+            btnCıkar.Location = new Point(684, 444);
+            btnCıkar.Margin = new Padding(4, 3, 4, 3);
             btnCıkar.Name = "btnCıkar";
-            btnCıkar.Size = new Size(157, 54);
+            btnCıkar.Size = new Size(124, 56);
             btnCıkar.TabIndex = 17;
             btnCıkar.Text = "ÇIKAR";
             btnCıkar.UseVisualStyleBackColor = true;
-            btnCıkar.Click += btnCıkar_Click;
+            btnCıkar.Click += BtnCıkar_Click;
             // 
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(0, 139);
+            label9.Location = new Point(0, 143);
+            label9.Margin = new Padding(4, 0, 4, 0);
             label9.Name = "label9";
-            label9.Size = new Size(47, 20);
+            label9.Size = new Size(54, 21);
             label9.TabIndex = 18;
             label9.Text = "Maaş:";
             // 
             // txtSalary
             // 
-            txtSalary.Location = new Point(107, 132);
+            txtSalary.Location = new Point(134, 139);
+            txtSalary.Margin = new Padding(4, 3, 4, 3);
             txtSalary.Name = "txtSalary";
-            txtSalary.Size = new Size(151, 27);
+            txtSalary.Size = new Size(234, 29);
             txtSalary.TabIndex = 19;
             // 
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(671, 44);
+            label10.Location = new Point(0, 356);
+            label10.Margin = new Padding(4, 0, 4, 0);
             label10.Name = "label10";
-            label10.Size = new Size(37, 20);
+            label10.Size = new Size(49, 21);
             label10.TabIndex = 20;
-            label10.Text = "Astı:";
+            label10.Text = "Üstü:";
             // 
             // txtSubordinate
             // 
-            txtSubordinate.Location = new Point(714, 37);
+            txtSubordinate.Location = new Point(134, 351);
+            txtSubordinate.Margin = new Padding(4, 3, 4, 3);
             txtSubordinate.Name = "txtSubordinate";
-            txtSubordinate.Size = new Size(188, 27);
+            txtSubordinate.PlaceholderText = "Üst Çalışan Giriniz";
+            txtSubordinate.Size = new Size(234, 29);
             txtSubordinate.TabIndex = 1;
-            txtSubordinate.TextChanged += txtSubordinate_TextChanged;
+            txtSubordinate.TextChanged += TxtSubordinate_TextChanged;
             // 
             // btnUpdate
             // 
-            btnUpdate.Location = new Point(312, 286);
+            btnUpdate.Location = new Point(533, 444);
+            btnUpdate.Margin = new Padding(4, 3, 4, 3);
             btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new Size(335, 54);
+            btnUpdate.Size = new Size(143, 56);
             btnUpdate.TabIndex = 22;
             btnUpdate.Text = "GÜNCELLE";
             btnUpdate.UseVisualStyleBackColor = true;
-            btnUpdate.Click += btnUpdate_Click;
+            btnUpdate.Click += BtnUpdate_Click;
             // 
             // lstÇalışanlar
             // 
             lstÇalışanlar.FormattingEnabled = true;
-            lstÇalışanlar.Location = new Point(714, 85);
+            lstÇalışanlar.ItemHeight = 21;
+            lstÇalışanlar.Location = new Point(134, 389);
+            lstÇalışanlar.Margin = new Padding(4, 3, 4, 3);
             lstÇalışanlar.Name = "lstÇalışanlar";
-            lstÇalışanlar.Size = new Size(188, 344);
+            lstÇalışanlar.Size = new Size(234, 109);
             lstÇalışanlar.TabIndex = 24;
-            lstÇalışanlar.SelectedIndexChanged += lstÇalışanlar_SelectedIndexChanged;
+            lstÇalışanlar.SelectedIndexChanged += LstÇalışanlar_SelectedIndexChanged;
             // 
             // lstEmployees
             // 
             lstEmployees.FormattingEnabled = true;
-            lstEmployees.Location = new Point(945, 90);
+            lstEmployees.ItemHeight = 21;
+            lstEmployees.Location = new Point(390, 169);
+            lstEmployees.Margin = new Padding(4, 3, 4, 3);
             lstEmployees.Name = "lstEmployees";
-            lstEmployees.Size = new Size(448, 344);
+            lstEmployees.Size = new Size(417, 256);
             lstEmployees.TabIndex = 25;
-            lstEmployees.SelectedIndexChanged += lstEmployees_SelectedIndexChanged;
+            lstEmployees.SelectedIndexChanged += LstEmployees_SelectedIndexChanged;
             // 
             // txtArama
             // 
-            txtArama.Location = new Point(945, 44);
+            txtArama.Location = new Point(390, 120);
+            txtArama.Margin = new Padding(4, 3, 4, 3);
             txtArama.Name = "txtArama";
             txtArama.PlaceholderText = "Çalışan Arama";
-            txtArama.Size = new Size(448, 27);
+            txtArama.Size = new Size(417, 29);
             txtArama.TabIndex = 26;
-            txtArama.TextChanged += txtArama_TextChanged;
+            txtArama.TextChanged += TxtArama_TextChanged;
             // 
             // EmployeeForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(1420, 450);
+            ClientSize = new Size(823, 515);
             Controls.Add(txtArama);
             Controls.Add(lstEmployees);
             Controls.Add(lstÇalışanlar);
@@ -293,6 +319,8 @@
             Controls.Add(label2);
             Controls.Add(txtName);
             Controls.Add(label1);
+            Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            Margin = new Padding(4, 3, 4, 3);
             Name = "EmployeeForm";
             Text = "EmployeeForm";
             Load += EmployeeForm_Load;

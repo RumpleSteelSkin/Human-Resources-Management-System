@@ -49,7 +49,7 @@
             // btnTrainingProgramDelete
             // 
             btnTrainingProgramDelete.BackColor = Color.FromArgb(255, 128, 128);
-            btnTrainingProgramDelete.Location = new Point(456, 381);
+            btnTrainingProgramDelete.Location = new Point(457, 391);
             btnTrainingProgramDelete.Name = "btnTrainingProgramDelete";
             btnTrainingProgramDelete.Size = new Size(130, 55);
             btnTrainingProgramDelete.TabIndex = 0;
@@ -63,7 +63,7 @@
             lstTrainingProgram.ItemHeight = 15;
             lstTrainingProgram.Location = new Point(302, 41);
             lstTrainingProgram.Name = "lstTrainingProgram";
-            lstTrainingProgram.Size = new Size(285, 334);
+            lstTrainingProgram.Size = new Size(285, 349);
             lstTrainingProgram.TabIndex = 1;
             lstTrainingProgram.SelectedIndexChanged += LstTrainingProgram_SelectedIndexChanged;
             lstTrainingProgram.DoubleClick += LstTrainingProgram_DoubleClick;
@@ -71,7 +71,7 @@
             // btnTrainingProgramUpdate
             // 
             btnTrainingProgramUpdate.BackColor = Color.FromArgb(255, 224, 192);
-            btnTrainingProgramUpdate.Location = new Point(302, 381);
+            btnTrainingProgramUpdate.Location = new Point(303, 391);
             btnTrainingProgramUpdate.Name = "btnTrainingProgramUpdate";
             btnTrainingProgramUpdate.Size = new Size(130, 55);
             btnTrainingProgramUpdate.TabIndex = 0;
@@ -182,10 +182,10 @@
             // 
             // btnTrainingProgramAdd
             // 
-            btnTrainingProgramAdd.BackColor = Color.FromArgb(192, 255, 192);
+            btnTrainingProgramAdd.BackColor = Color.FromArgb(192, 192, 255);
             btnTrainingProgramAdd.Location = new Point(12, 413);
             btnTrainingProgramAdd.Name = "btnTrainingProgramAdd";
-            btnTrainingProgramAdd.Size = new Size(241, 23);
+            btnTrainingProgramAdd.Size = new Size(241, 33);
             btnTrainingProgramAdd.TabIndex = 6;
             btnTrainingProgramAdd.Text = "Eğitim Programını Ekle";
             btnTrainingProgramAdd.UseVisualStyleBackColor = false;
@@ -195,8 +195,8 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(255, 192, 192);
-            ClientSize = new Size(598, 443);
+            BackColor = Color.FromArgb(192, 255, 192);
+            ClientSize = new Size(598, 450);
             Controls.Add(btnTrainingProgramAdd);
             Controls.Add(dtTrainingProgramEndDate);
             Controls.Add(dtTrainingProgramStartDate);

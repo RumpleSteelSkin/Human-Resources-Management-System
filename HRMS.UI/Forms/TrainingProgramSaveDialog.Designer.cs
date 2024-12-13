@@ -60,7 +60,7 @@
             // 
             // lblDialogTitle
             // 
-            lblDialogTitle.BackColor = Color.Green;
+            lblDialogTitle.BackColor = Color.FromArgb(0, 64, 0);
             lblDialogTitle.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 162);
             lblDialogTitle.ForeColor = Color.White;
             lblDialogTitle.Location = new Point(12, 2);

@@ -9,24 +9,11 @@ namespace HRMS.UI.Forms
         public LeaveRequestForm()
         {
             InitializeComponent();
-
-            dtStartDate.ValueChanged += (sender, e) =>
-            {
-                if (dtEndDate.Value < dtStartDate.Value)
-                {
-                    MessageBox.Show("Bitiş tarihi, başlangıç tarihinden önce olamaz!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                    dtEndDate.Value = dtStartDate.Value;
-                }
-            };
-
             dtEndDate.ValueChanged += (sender, e) =>
             {
                 if (dtEndDate.Value < dtStartDate.Value)
                 {
                     MessageBox.Show("Bitiş tarihi, başlangıç tarihinden önce olamaz!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                    dtEndDate.Value = dtStartDate.Value;
                 }
             };
         }
@@ -123,6 +110,7 @@ namespace HRMS.UI.Forms
                             selectedLeaveRequest.EndDate = dtEndDate.Value;
                             selectedLeaveRequest.LeaveStatus = cmbLeaveStatus.Text;
                             selectedLeaveRequest.LeaveType = leaveTypeSet;
+                            FP.LeaveRequestService?.Update(selectedLeaveRequest);
                             selectedLeaveRequest = null;
                             MessageBox.Show("İşlem Başarılı!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             GetAllEmployeeAndLeaveRequestToList();

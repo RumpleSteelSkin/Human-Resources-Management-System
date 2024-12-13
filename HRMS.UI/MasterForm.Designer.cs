@@ -28,23 +28,40 @@
         /// </summary>
         private void InitializeComponent()
         {
+            lblCredits = new Label();
             SuspendLayout();
+            // 
+            // lblCredits
+            // 
+            lblCredits.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            lblCredits.BackColor = Color.White;
+            lblCredits.Font = new Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            lblCredits.Location = new Point(823, 336);
+            lblCredits.Name = "lblCredits";
+            lblCredits.Size = new Size(229, 199);
+            lblCredits.TabIndex = 1;
+            lblCredits.Text = "GELİŞTİRENLER\r\nEREN\r\nASLIHAN\r\nMETİNHAN\r\nAHMET\r\n";
+            lblCredits.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // MasterForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(1064, 544);
+            Controls.Add(lblCredits);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             IsMdiContainer = true;
             Margin = new Padding(3, 2, 3, 2);
             Name = "MasterForm";
-            Text = "MasterForm";
+            Text = "GİRİŞ EKRANI";
             WindowState = FormWindowState.Maximized;
             Load += MasterForm_Load;
             ResumeLayout(false);
         }
 
         #endregion
+
+        private Label lblCredits;
     }
 }
