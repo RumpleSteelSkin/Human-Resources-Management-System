@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MasterForm));
             lblCredits = new Label();
             SuspendLayout();
             // 
@@ -51,6 +52,7 @@
             ClientSize = new Size(1064, 544);
             Controls.Add(lblCredits);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             IsMdiContainer = true;
             Margin = new Padding(3, 2, 3, 2);
             Name = "MasterForm";

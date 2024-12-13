@@ -17,6 +17,7 @@ namespace HRMS.UI
                 if (!(control is not MdiClient client))
                 {
                     client.BackColor = Color.FromArgb(153, 180, 250);
+                    client.BackgroundImage = Bitmap.FromFile(@".\Images\png\HRMS CenterImage.png");
                     break;
                 }
             }

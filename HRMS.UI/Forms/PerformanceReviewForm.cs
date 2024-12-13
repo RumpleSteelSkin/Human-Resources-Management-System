@@ -28,7 +28,6 @@ namespace HRMS.UI.Forms
         {
             GetAllEmployeeAndPerformanceReview();
         }
-
         private void Button1_Click(object sender, EventArgs e)
         {
             try
@@ -58,17 +57,14 @@ namespace HRMS.UI.Forms
                 FP.ShowError(ex);
             }
         }
-
         private void AramaTxt_TextChanged(object sender, EventArgs e)
         {
             FP.UpdateListBox(calisanliste, "ID", null!, FP.EmployeeService?.GetAll()?.Where(emp => emp.FullName!.Contains(aramaTxt.Text, StringComparison.OrdinalIgnoreCase)).ToList()!);
         }
-
         private void TxtVoterSearch_TextChanged(object sender, EventArgs e)
         {
             FP.UpdateListBox(lstVoterEmployee, "ID", null!, FP.EmployeeService?.GetAll()?.Where(emp => emp.FullName!.Contains(txtVoterSearch.Text, StringComparison.OrdinalIgnoreCase)).ToList()!);
         }
-
         private void Button2_Click(object sender, EventArgs e)
         {
             try
@@ -82,7 +78,7 @@ namespace HRMS.UI.Forms
                         {
                             selectedPerformanceReview.Score = (int)puan.Value;
                             selectedPerformanceReview.Comments = yorumtxt.Text;
-                            selectedPerformanceReview.EmployeeID = Guid.TryParse(lstVoterEmployee.SelectedValue?.ToString(), out var votedID) ? votedID : throw new Exception("Geçerli bir puanlanan çalışanı seçiniz.");
+                            selectedPerformanceReview.EmployeeID = Guid.TryParse(calisanliste.SelectedValue?.ToString(), out var votedID) ? votedID : throw new Exception("Geçerli bir puanlanan çalışanı seçiniz.");
                             selectedPerformanceReview.ReviewID = Guid.TryParse(lstVoterEmployee.SelectedValue?.ToString(), out var voterID) ? voterID : throw new Exception("Geçerli bir puanlayan çalışanı seçiniz.");
                             FP.PerformanceReviewService?.Update(selectedPerformanceReview);
                             MessageBox.Show("İşlem Başarılı!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -102,7 +98,6 @@ namespace HRMS.UI.Forms
                 FP.ShowError(ex);
             }
         }
-
         private void Puanlisteara_TextChanged(object sender, EventArgs e)
         {
             try
@@ -111,7 +106,6 @@ namespace HRMS.UI.Forms
             }
             catch { }
         }
-
         private void Puanlst_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -127,7 +121,6 @@ namespace HRMS.UI.Forms
             }
             catch { }
         }
-
         private void Button3_Click(object sender, EventArgs e)
         {
             try

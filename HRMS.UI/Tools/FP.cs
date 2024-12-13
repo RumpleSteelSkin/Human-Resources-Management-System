@@ -51,7 +51,10 @@ namespace HRMS.UI.Tools
             if (isOpen)
                 MessageBox.Show("Bu Form zaten açık durumda.", "Hata!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             else
+            {
                 fMdiChild.Show();
+                fMdiChild.BringToFront();
+            }
         }
 
         /// <summary>
