@@ -9,9 +9,9 @@ namespace HRMS.Entities.Models
 
         //Navigation properties
         public Employee? Employee { get; set; } 
-        public Guid EmployeeID { get; set; } 
+        public Guid? EmployeeID { get; set; } 
         public Employee? Review { get; set; } 
-        public Guid ReviewID { get; set; }
+        public Guid? ReviewID { get; set; }
 
         public override string ToString()
         {

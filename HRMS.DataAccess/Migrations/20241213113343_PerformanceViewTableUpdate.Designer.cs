@@ -4,6 +4,7 @@ using HRMS.DataAccess.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HRMS.DataAccess.Migrations
 {
     [DbContext(typeof(ADBContext))]
-    partial class ADBContextModelSnapshot : ModelSnapshot
+    [Migration("20241213113343_PerformanceViewTableUpdate")]
+    partial class PerformanceViewTableUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -213,7 +216,7 @@ namespace HRMS.DataAccess.Migrations
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("TrainerID")
+                    b.Property<Guid>("TrainerID")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("ID");
@@ -289,7 +292,9 @@ namespace HRMS.DataAccess.Migrations
                 {
                     b.HasOne("HRMS.Entities.Models.Employee", "Trainer")
                         .WithMany()
-                        .HasForeignKey("TrainerID");
+                        .HasForeignKey("TrainerID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Trainer");
                 });

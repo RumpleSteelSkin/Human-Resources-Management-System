@@ -37,9 +37,8 @@
             lstPositionList = new ListBox();
             chkPositionActiveOrPassive = new CheckBox();
             gbDepartmentProcess = new GroupBox();
-            nmrPositionSalary = new NumericUpDown();
+            txtPositionSalary = new TextBox();
             gbDepartmentProcess.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)nmrPositionSalary).BeginInit();
             SuspendLayout();
             // 
             // txtPositionName
@@ -47,7 +46,7 @@
             txtPositionName.Location = new Point(204, 39);
             txtPositionName.Margin = new Padding(5, 6, 5, 6);
             txtPositionName.Name = "txtPositionName";
-            txtPositionName.Size = new Size(429, 41);
+            txtPositionName.Size = new Size(429, 34);
             txtPositionName.TabIndex = 1;
             // 
             // lblDepartmentName
@@ -56,7 +55,7 @@
             lblDepartmentName.Location = new Point(12, 45);
             lblDepartmentName.Margin = new Padding(5, 0, 5, 0);
             lblDepartmentName.Name = "lblDepartmentName";
-            lblDepartmentName.Size = new Size(171, 35);
+            lblDepartmentName.Size = new Size(138, 28);
             lblDepartmentName.TabIndex = 2;
             lblDepartmentName.Text = "Pozisyon Adı:";
             // 
@@ -66,8 +65,9 @@
             txtSearch.Margin = new Padding(5, 6, 5, 6);
             txtSearch.Name = "txtSearch";
             txtSearch.PlaceholderText = "Pozisyon Arama";
-            txtSearch.Size = new Size(618, 41);
+            txtSearch.Size = new Size(618, 34);
             txtSearch.TabIndex = 4;
+            txtSearch.TextChanged += TxtSearch_TextChanged_1;
             // 
             // lblDepartmentLocation
             // 
@@ -75,9 +75,9 @@
             lblDepartmentLocation.Location = new Point(12, 88);
             lblDepartmentLocation.Margin = new Padding(5, 0, 5, 0);
             lblDepartmentLocation.Name = "lblDepartmentLocation";
-            lblDepartmentLocation.Size = new Size(90, 35);
+            lblDepartmentLocation.Size = new Size(169, 28);
             lblDepartmentLocation.TabIndex = 2;
-            lblDepartmentLocation.Text = "Maaşı:";
+            lblDepartmentLocation.Text = "Başlangıç Maaşı:";
             // 
             // label1
             // 
@@ -85,7 +85,7 @@
             label1.Location = new Point(11, 141);
             label1.Margin = new Padding(5, 0, 5, 0);
             label1.Name = "label1";
-            label1.Size = new Size(172, 35);
+            label1.Size = new Size(137, 28);
             label1.TabIndex = 2;
             label1.Text = "Durum (A/P):";
             // 
@@ -103,11 +103,11 @@
             // lstPositionList
             // 
             lstPositionList.FormattingEnabled = true;
-            lstPositionList.ItemHeight = 35;
+            lstPositionList.ItemHeight = 28;
             lstPositionList.Location = new Point(15, 232);
             lstPositionList.Margin = new Padding(5, 6, 5, 6);
             lstPositionList.Name = "lstPositionList";
-            lstPositionList.Size = new Size(618, 354);
+            lstPositionList.Size = new Size(618, 340);
             lstPositionList.TabIndex = 3;
             // 
             // chkPositionActiveOrPassive
@@ -115,7 +115,7 @@
             chkPositionActiveOrPassive.AutoSize = true;
             chkPositionActiveOrPassive.Location = new Point(206, 140);
             chkPositionActiveOrPassive.Name = "chkPositionActiveOrPassive";
-            chkPositionActiveOrPassive.Size = new Size(104, 39);
+            chkPositionActiveOrPassive.Size = new Size(83, 32);
             chkPositionActiveOrPassive.TabIndex = 5;
             chkPositionActiveOrPassive.Text = "PASİF";
             chkPositionActiveOrPassive.UseVisualStyleBackColor = true;
@@ -123,7 +123,6 @@
             // 
             // gbDepartmentProcess
             // 
-            gbDepartmentProcess.Controls.Add(nmrPositionSalary);
             gbDepartmentProcess.Controls.Add(chkPositionActiveOrPassive);
             gbDepartmentProcess.Controls.Add(lstPositionList);
             gbDepartmentProcess.Controls.Add(btnAdd);
@@ -131,6 +130,7 @@
             gbDepartmentProcess.Controls.Add(lblDepartmentLocation);
             gbDepartmentProcess.Controls.Add(txtSearch);
             gbDepartmentProcess.Controls.Add(lblDepartmentName);
+            gbDepartmentProcess.Controls.Add(txtPositionSalary);
             gbDepartmentProcess.Controls.Add(txtPositionName);
             gbDepartmentProcess.Location = new Point(14, 15);
             gbDepartmentProcess.Margin = new Padding(5, 6, 5, 6);
@@ -141,17 +141,17 @@
             gbDepartmentProcess.TabStop = false;
             gbDepartmentProcess.Text = "Pozisyon İşlemleri";
             // 
-            // nmrPositionSalary
+            // txtPositionSalary
             // 
-            nmrPositionSalary.Location = new Point(204, 88);
-            nmrPositionSalary.Margin = new Padding(6, 5, 6, 5);
-            nmrPositionSalary.Name = "nmrPositionSalary";
-            nmrPositionSalary.Size = new Size(429, 41);
-            nmrPositionSalary.TabIndex = 6;
+            txtPositionSalary.Location = new Point(204, 85);
+            txtPositionSalary.Margin = new Padding(5, 6, 5, 6);
+            txtPositionSalary.Name = "txtPositionSalary";
+            txtPositionSalary.Size = new Size(429, 34);
+            txtPositionSalary.TabIndex = 1;
             // 
             // PositionForm
             // 
-            AutoScaleDimensions = new SizeF(15F, 35F);
+            AutoScaleDimensions = new SizeF(12F, 28F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(680, 607);
             Controls.Add(gbDepartmentProcess);
@@ -159,9 +159,9 @@
             Margin = new Padding(6, 5, 6, 5);
             Name = "PositionForm";
             Text = "POZİSYON FORMU";
+            Load += PositionForm_Load_1;
             gbDepartmentProcess.ResumeLayout(false);
             gbDepartmentProcess.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)nmrPositionSalary).EndInit();
             ResumeLayout(false);
         }
 
@@ -176,6 +176,6 @@
         private ListBox lstPositionList;
         private CheckBox chkPositionActiveOrPassive;
         private GroupBox gbDepartmentProcess;
-        private NumericUpDown nmrPositionSalary;
+        private TextBox txtPositionSalary;
     }
 }

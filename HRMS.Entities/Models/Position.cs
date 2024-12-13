@@ -8,5 +8,9 @@ namespace HRMS.Entities.Models
 
         //Navigation property
         public ICollection<Employee>? Employees { get; set; }
+        public override string ToString()
+        {
+            return $"{Name}";
+        }
     }
 }

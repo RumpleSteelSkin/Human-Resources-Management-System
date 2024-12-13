@@ -46,7 +46,6 @@ namespace HRMS.UI.Forms
             try
             {
                 FP.UpdateListBox(lstPositionList, "ID", "Name", FP.PositionService?.GetAll()!, LstPositionList_SelectedIndexChanged!);
-                AddContextMenuStrip();
             }
             catch (Exception ex)
             {
@@ -103,7 +102,7 @@ namespace HRMS.UI.Forms
                             if (dr == DialogResult.Yes)
                             {
                                 selectedPosition.Name = txtPositionName.Text;
-                                selectedPosition.Salary = nmrPositionSalary.Value;
+                                selectedPosition.Salary = Convert.ToDecimal(txtPositionSalary.Text);
                                 selectedPosition.IsActive = chkPositionActiveOrPassive.Checked;
                                 FP.PositionService?.Update(selectedPosition);
                                 selectedPosition = null;
@@ -120,21 +119,8 @@ namespace HRMS.UI.Forms
                 FP.ShowError(ex);
             }
         }
-        private void PositionForm_Load(object sender, EventArgs e)
-        {
-            GetAllPositionsToList();
-        }
-        private void TxtSearch_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                FP.UpdateListBox(lstPositionList, "ID", "Name", FP.PositionService?.GetAll()?.Where(x => x.Name!.Contains(txtSearch.Text, StringComparison.OrdinalIgnoreCase)).ToList()!, LstPositionList_SelectedIndexChanged!);
-            }
-            catch (Exception ex)
-            {
-                FP.ShowError(ex);
-            }
-        }
+
+
         private void ChkPositionActiveOrPassive_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -156,7 +142,7 @@ namespace HRMS.UI.Forms
                     if (selectedPosition != null)
                     {
                         txtPositionName.Text = selectedPosition.Name;
-                        nmrPositionSalary.Value = selectedPosition.Salary;
+                        txtPositionSalary.Text = selectedPosition.Salary.ToString();
                         chkPositionActiveOrPassive.Checked = selectedPosition.IsActive;
                     }
                 }
@@ -176,7 +162,7 @@ namespace HRMS.UI.Forms
                     Position position = new()
                     {
                         Name = txtPositionName.Text,
-                        Salary = nmrPositionSalary.Value,
+                        Salary = Convert.ToDecimal(txtPositionSalary.Text),
                         IsActive = chkPositionActiveOrPassive.Checked
                     };
                     FP.PositionService?.Create(position);
@@ -191,6 +177,24 @@ namespace HRMS.UI.Forms
             }
         }
 
-#endregion
+        #endregion
+
+        private void PositionForm_Load_1(object sender, EventArgs e)
+        {
+            AddContextMenuStrip();
+            GetAllPositionsToList();
+        }
+
+        private void TxtSearch_TextChanged_1(object sender, EventArgs e)
+        {
+            try
+            {
+                FP.UpdateListBox(lstPositionList, "ID", "Name", FP.PositionService?.GetAll()?.Where(x => x.Name!.Contains(txtSearch.Text, StringComparison.OrdinalIgnoreCase)).ToList()!, LstPositionList_SelectedIndexChanged!);
+            }
+            catch (Exception ex)
+            {
+                FP.ShowError(ex);
+            }
+        }
     }
 }

@@ -65,11 +65,20 @@ namespace HRMS.UI.Forms
                         DialogResult dr = MessageBox.Show($"{lstDepartmentList?.SelectedItem?.ToString()} isimli departmanı silmek istediğinize emin misiniz?", "Departman Silme İşlemi", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (dr == DialogResult.Yes)
                         {
-                            FP.DepartmentService?.Delete(Guid.TryParse(lstDepartmentList?.SelectedValue?.ToString(), out var departmentID) ? departmentID : throw new Exception("Geçerli bir departman seçiniz."));
-                            selectedDepartment = null;
-                            MessageBox.Show("İşlem Başarılı!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            GetAllDepartmanToList();
-                            FP.FormClear(this);
+                            Guid departmentID = Guid.TryParse(lstDepartmentList?.SelectedValue?.ToString(), out var depID) ? depID : throw new Exception("Geçerli bir departman seçiniz.");
+                            int DepartmentInEmployee = FP.EmployeeService!.GetAll()!.Where(x => x.DepartmentID == departmentID).ToList().Count;
+                            if (DepartmentInEmployee == 0)
+                            {
+                                FP.DepartmentService?.Delete(departmentID);
+                                selectedDepartment = null;
+                                MessageBox.Show("İşlem Başarılı!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                GetAllDepartmanToList();
+                                FP.FormClear(this);
+                            }
+                            else
+                            {
+                                throw new Exception("Bu departmana bağlı çalışanlar olduğu için silme işlemi yapılamaz.");
+                            }
                         }
                     }
                     else
@@ -85,7 +94,6 @@ namespace HRMS.UI.Forms
             catch (Exception ex)
             {
                 FP.ShowError(ex);
-                MessageBox.Show("Muhtemelen bu departmanın içerisinde aktif çalışanlar bulunmaktadır, Departmanı silmek için çalışanları farklı departmana yönlendirmeniz gerekmektedir.");
             }
         }
         private void ProductUpdate(object? sender, EventArgs e)
